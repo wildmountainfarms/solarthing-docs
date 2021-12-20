@@ -6,8 +6,8 @@ project = 'SolarThing'
 copyright = '2021, Joshua Shannon'
 author = 'Joshua Shannon'
 
-release = '0.1'
-version = '0.1.0'
+# release = '0.1'
+# version = '0.1.0'
 
 # -- General configuration
 

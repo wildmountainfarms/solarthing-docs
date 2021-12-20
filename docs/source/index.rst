@@ -17,10 +17,12 @@ how to :ref:`installation` the project.
 
    This documentation is incomplete for the time being. Documentation is being migrated here from https://github.com/wildmountainfarms/solarthing
 
+
 Contents
 --------
 
 .. toctree::
 
+   installation
    usage
    api
