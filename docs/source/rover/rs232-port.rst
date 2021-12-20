@@ -26,10 +26,15 @@ The pin out of the cable is TX/RX/GND/GND/VCC/VCC. Note that is it possible the 
 
 There is a 15V potential across GND and VCC.
 
+
 Creating your own cable
 -----------------------
 
 To create your own cable, you will need an RJ12 cable that you can strip to get the bare wires. You will also need an RS232 adapter.
 Typically, an RS232 DB9 to USB cable is used. To make the connections easier to make with the DB9 port, a breakout board is recommended.
 
-Once you know which wires on the RJ12 cable are RX, TX, and GND, you connect the RJ12's RX to the DB9's TX and the RJ12's TX to the DB9's RX.
+Once you know which wires on the RJ12 cable are RX, TX, and GND, you connect: 
+
+* The RJ12's RX to the DB9's TX 
+* The RJ12's TX to the DB9's RX
+* GND to GND

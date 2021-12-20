@@ -13,5 +13,11 @@ SolarThing requires Java >= 8 and SolarThing GraphQL requires Java >= 11. If you
 Install on Systems with Apt
 ---------------------------
 
-On Debian systems, the ``apt-get`` or ``apt`` command is used to install most software. To install Java 11, run this command:
+The ``apt-get`` or ``apt`` command is used to install most software. To install Java 11, run this command:
+
+
+.. code-block:: shell
+
+    sudo apt-get update
+    sudo apt-get install -y openjdk-11-jdk-headless
 

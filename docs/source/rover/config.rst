@@ -6,7 +6,7 @@ Documentation for configuring SolarThing to monitor.
 First, run these commands:
 
 
-.. code-block:: console
+.. code-block:: shell
 
     cd /opt/solarthing/program/
     ./create_custom.sh custom_rover
@@ -18,7 +18,7 @@ In previous SolarThing versions, those were the recommended directories to place
 That you are in the ``/opt/solarthing/program/custom_rover/config/`` directory, it's time to create a configuration file. You can use your editor of choice.
 For simplicity, the examples use ``nano``.
 
-.. code-block:: console
+.. code-block:: shell
 
     nano base.json
 
@@ -56,7 +56,7 @@ I will eventually add documentation for finding your Modbus address. `#26 <https
 Save the file. Now we need to create another file:
 
 
-.. code-block:: console
+.. code-block:: shell
 
     nano rover_serial.json
 
@@ -76,7 +76,7 @@ Depending on the path to your serial port, you may need to change ``"/dev/ttyUSB
 
 Now change your directory to continue to test your new configuration:
 
-.. code-block:: console
+.. code-block:: shell
 
     cd ..
     # OR

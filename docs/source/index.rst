@@ -27,7 +27,9 @@ Contents
    supported-products
    database-and-display
    installation
+   solarthing-check
    faq
+   updating
 
 
 .. toctree::
