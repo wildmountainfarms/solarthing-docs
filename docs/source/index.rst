@@ -25,6 +25,7 @@ Contents
    :caption: Start
 
    supported-products
+   database-and-display
    installation
    faq
 
@@ -38,9 +39,17 @@ Contents
 
 
 .. toctree::
-   :caption: Required Hardware
+   :caption: Hardware
 
    rover/rs232-port
    rover/rs485-port
    tracer/rs485-port
    mate/rs232-port
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: External Installs
+   
+   external/install-java
+   external/install-couchdb
