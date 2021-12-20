@@ -1,7 +1,7 @@
 Rover Configuration
 ===================
 
-Documentation for configuring SolarThing to monitor.
+Documentation for configuring SolarThing to monitor a Renogy Rover (or supported product).
 
 First, run these commands:
 
@@ -15,7 +15,7 @@ First, run these commands:
 That command will create a directory for you to put your configuration in. You may notice there are other directories in ``/opt/solarthing/program``.
 In previous SolarThing versions, those were the recommended directories to place configuration files. This is no longer the case.
 
-That you are in the ``/opt/solarthing/program/custom_rover/config/`` directory, it's time to create a configuration file. You can use your editor of choice.
+Now that you are in the ``/opt/solarthing/program/custom_rover/config/`` directory, it's time to create a configuration file. You can use your editor of choice.
 For simplicity, the examples use ``nano``.
 
 .. code-block:: shell
@@ -50,8 +50,7 @@ You can now paste this into the file:
 
 
 We will go over what all of this configuration means later, but for now let's focus on ``"1"``. That represents the address of the modbus device.
-1 is typically the address, but it can sometimes be 10, 16, or a different number. The deprecated rover-setup program has a feature to scan for the address.
-I will eventually add documentation for finding your Modbus address. `#26 <https://github.com/wildmountainfarms/solarthing/issues/26>`_ and `#29 <https://github.com/wildmountainfarms/solarthing/issues/29>`_ are cases of people having this issue.
+If the address is not ``1``, you should know the correct address from :ref:`devices-not-detected`.
 
 Save the file. Now we need to create another file:
 

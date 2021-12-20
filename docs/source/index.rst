@@ -28,17 +28,9 @@ Contents
    database-and-display
    installation
    solarthing-check
+   config-start
    faq
    updating
-
-
-.. toctree::
-   :caption: Configuration
-
-   rover/config
-   mate/config
-   tracer/config
-
 
 .. toctree::
    :caption: Hardware

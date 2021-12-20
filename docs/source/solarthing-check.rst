@@ -52,6 +52,8 @@ In the above output, you can see messages such as ``converter now attached to tt
 If you see a message like that, it means your adapter is on ``/dev/ttyUSB1``. Awesome! You found the right port!
 
 
+.. _devices-not-detected:
+
 Devices not detected
 --------------------
 
