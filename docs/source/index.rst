@@ -10,8 +10,7 @@ The primary purpose of SolarThing is to get data and upload it to a database. Us
 experience, but InfluxDB can also be used. CouchDB can run on Raspberry Pis >= 3, but using a separate computer or server for
 CouchDB is recommended.
 
-Check out the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
+To install, checkout :doc:`installation`.
 
 .. note::
 
@@ -22,7 +21,26 @@ Contents
 --------
 
 .. toctree::
+   :maxdepth: 1
+   :caption: Start
 
+   supported-products
    installation
-   usage
-   api
+   faq
+
+
+.. toctree::
+   :caption: Configuration
+
+   rover/config
+   mate/config
+   tracer/config
+
+
+.. toctree::
+   :caption: Required Hardware
+
+   rover/rs232-port
+   rover/rs485-port
+   tracer/rs485-port
+   mate/rs232-port
