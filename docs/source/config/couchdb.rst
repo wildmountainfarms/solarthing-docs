@@ -74,7 +74,7 @@ CD up one directory using ``cd ..``. The end result should be similar to below:
 
 .. code-block:: console
 
-    pi@raspberrypi:/opt/solarthing/program/custom_rover/$ 
+    pi@raspberrypi:/opt/solarthing/program/custom_rover$ 
 
 Now let's run the setup program:
 

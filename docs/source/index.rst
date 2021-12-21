@@ -30,6 +30,7 @@ Contents
    serial-ports
    solarthing-check
    configuration
+   view-data
    faq
    updating
 
