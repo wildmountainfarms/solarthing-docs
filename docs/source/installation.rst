@@ -19,7 +19,7 @@ Run these commands to install SolarThing. The script will install to ``/opt/sola
 Checking if java is installed
 -----------------------------
 
-Now SolarThing has been installed. That does not mean that ``java`` or CouchDB have been installed. Let's check to see if ``java`` is installed now.
+Now SolarThing has been installed. That does not mean that ``java`` has been installed. Let's check to see if ``java`` is installed now.
 
 .. code-block:: shell
 

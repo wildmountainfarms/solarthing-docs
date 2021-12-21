@@ -69,4 +69,4 @@ Running ``dmesg | grep tty``
 OK, so the above output is likely more than what you would see. When I ran the above command, I had 3 serial port adapters. 
 In the above output, you can see messages such as ``converter now attached to ttyUSB1``. In my case, ``/dev/ttyUSB1`` relates to that message.
 
-You can check whether or not the port you have found is correct on the next page.
+You can check whether or not the port you have found is correct on :doc:`solarthing-check`.

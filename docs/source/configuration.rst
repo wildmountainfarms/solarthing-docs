@@ -12,6 +12,9 @@ Click on the configuration below for whichever type of device you have.
    mate/config
    tracer/config
 
+
+.. _running-first-time:
+
 Running for the first time
 --------------------------
 

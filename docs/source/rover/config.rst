@@ -81,3 +81,5 @@ Now change your directory to continue to test your new configuration:
     # OR
     cd /opt/solarthing/program/custom_rover/
 
+
+Go to :ref:`running-first-time`.
