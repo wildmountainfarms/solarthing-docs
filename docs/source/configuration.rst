@@ -1,4 +1,4 @@
-Configuration Start
+Configuration
 =====================
 
 Now that you know the path to your serial port and the modbus address, it's time to get configuring!
@@ -50,7 +50,7 @@ If you don't already know which database you want to set up, take a look at :doc
 
 .. toctree::
    :maxdepth: 1
-   :caption: Configuration
+   :caption: Databases
 
    config/couchdb
 
@@ -65,6 +65,8 @@ Now that you have edited your ``base.json`` with a new database, give the progra
 .. code-block:: shell
     
     sudo -u solarthing ./run.sh
+
+You should see similar output from before, but there may also be additional messages saying that data is being uploaded to a database.
 
 
 Install systemd service

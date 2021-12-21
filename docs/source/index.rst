@@ -27,18 +27,11 @@ Contents
    supported-products
    database-and-display
    installation
+   serial-ports
    solarthing-check
-   config-start
+   configuration
    faq
    updating
-
-.. toctree::
-   :caption: Hardware
-
-   rover/rs232-port
-   rover/rs485-port
-   tracer/rs485-port
-   mate/rs232-port
 
 
 .. toctree::

@@ -38,3 +38,6 @@ Once you know which wires on the RJ12 cable are RX, TX, and GND, you connect:
 * The RJ12's RX to the DB9's TX 
 * The RJ12's TX to the DB9's RX
 * GND to GND
+
+
+Go to: :ref:`serial-ports-continued`.
