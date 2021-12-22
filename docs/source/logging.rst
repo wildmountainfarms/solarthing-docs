@@ -45,3 +45,15 @@ Types of logs
 
 You've seen above that there are three log files. The "summary" log files have the least amount of text in them. 
 "info" log files are in the middle, and "debug" log files have the most information in them.
+
+
+Decompressing logs
+---------------------
+
+As mentioned earlier, old log files have a ``.log.gz`` extension. If you need to view these log files, you must first decompress them.
+
+Here is an example of how to decompress a particular log file:
+
+.. code-block:: shell
+
+    

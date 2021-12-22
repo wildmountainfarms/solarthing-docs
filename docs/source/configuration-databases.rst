@@ -12,6 +12,7 @@ If you don't already know which database you want to set up, take a look at :doc
    config/couchdb
    config/influxdb1
    config/influxdb2
+   config/mqtt
 
 .. toctree::
    :maxdepth: 1

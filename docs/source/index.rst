@@ -45,6 +45,15 @@ Contents
 
    updating
    logging
+   stability
+
+.. toctree::
+   :maxdepth: 1
+   :caption: More Configuration
+
+   config/rpi-cpu-temp
+   config/w1-temperature
+   config/analytics
 
 
 .. toctree::
