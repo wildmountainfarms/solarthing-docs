@@ -22,17 +22,29 @@ Contents
 
 .. toctree::
    :maxdepth: 1
-   :caption: Start
+   :caption: Quickstart
 
-   supported-products
-   database-and-display
    installation
    serial-ports
    solarthing-check
    configuration
    view-data
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: About
+
+   supported-products
+   database-and-display
    faq
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Maintaining SolarThing
+
    updating
+   logging
 
 
 .. toctree::
@@ -41,3 +53,4 @@ Contents
    
    external/install-java
    external/install-couchdb
+   external/install-influxdb

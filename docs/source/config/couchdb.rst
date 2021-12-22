@@ -87,33 +87,4 @@ Now let's run the setup program:
 You should see output in the terminal saying that it is creating a bunch of databases. If it ends with no errors, you have successfully run the setup program.
 
 
-Adding to ``base.json``
--------------------------
-
-Now that CouchDB is fully set up and we have a ``couchdb.json`` configuration file, let's add it to our ``base.json``.
-
-Start editing ``base.json``. Right now, it should look something like:
-
-.. code-block:: json5
-
-    {
-      //...
-      "databases": [ ],
-      //...
-    }
-
-Let's change it to look like this:
-
-.. code-block:: json5
-
-    {
-      //...
-      "databases": [
-        "config/couchdb.json"
-      ],
-      //...
-    }
-
-Save the file. It is set up now!
-
-Go to: :ref:`configuration-continued`.
+Jump to :doc:`../configuration-edit-base-json`

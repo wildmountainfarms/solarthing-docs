@@ -59,4 +59,4 @@ Now change your directory to continue to test your new configuration:
 
 
 
-Go to :ref:`running-first-time`.
+Go to :doc:`../configuration-running`.
