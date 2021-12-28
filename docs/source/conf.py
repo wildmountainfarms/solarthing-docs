@@ -40,6 +40,8 @@ epub_show_urls = 'footnote'
 extlinks = {
     'issue-page': ('https://github.com/wildmountainfarms/solarthing/issues', 'issues'),
     'issue': ('https://github.com/wildmountainfarms/solarthing/issues/%s', '#%s'),
+    'blob': ('https://github.com/wildmountainfarms/solarthing/blob/%s', 'solarthing/blob/%s'),
+    'tree': ('https://github.com/wildmountainfarms/solarthing/tree/%s', 'solarthing/tree/%s'),
 }
 
 # We aren't using global substitutions now, so keep this commented

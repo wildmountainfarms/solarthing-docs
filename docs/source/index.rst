@@ -54,6 +54,9 @@ Contents
    config/rpi-cpu-temp
    config/w1-temperature
    config/analytics
+   config/config-server
+   tracer/clock
+   config/commands
 
 
 .. toctree::

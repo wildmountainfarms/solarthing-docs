@@ -43,7 +43,7 @@ You can now paste this into the file:
           "io": "config/tracer_serial.json",
           "devices": {
             "1": {
-              "type": "rover"
+              "type": "tracer"
             }
           }
         }
