@@ -24,7 +24,13 @@ To view info logs:
 
 .. code-block:: shell
 
-    nano log_info.log
+    less -R log_info.log
+
+.. note:: 
+    
+    While you can use ``nano`` to view log files, it is not recommended because it will not view colors well and is not good at opening large files.
+    ``vi`` and ``vim`` are also not good for viewing log files containing color.
+
 
 Now you can browse around.
 
@@ -38,6 +44,11 @@ You can also look at the logs "live", by using this command:
     
    By default the debug log output is not "flushed" immediately. That means that while viewing it data will be cut off.
    This is to reduce the amount of time spent writing to disk, which is critical in maintaining a stable system on Raspberry Pis.
+
+If you do not want to switch between ``less -R`` and ``tail -f``, you can just use ``less -R`` by itself. 
+When you want to start "tailing" a file, just press Shift+F. When you want to go back to browsing the file, just press CTRL+C.
+
+If you want to reload the file while inside of ``less -R``, just type Shift+R (``R``). ``less`` is such a useful tool!
 
 
 Types of logs
