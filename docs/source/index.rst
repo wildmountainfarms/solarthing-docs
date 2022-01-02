@@ -66,3 +66,5 @@ Contents
    external/install-java
    external/install-couchdb
    external/install-influxdb
+   external/headless-rpi
+   external/headless-odroid

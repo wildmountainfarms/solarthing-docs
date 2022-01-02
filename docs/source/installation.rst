@@ -16,6 +16,11 @@ Run these commands to install SolarThing. The script will install to ``/opt/sola
     curl https://raw.githubusercontent.com/wildmountainfarms/solarthing/master/other/linux/clone_install.sh | sudo bash
     sudo usermod -a -G solarthing,dialout,tty,video $USER
 
+.. note::
+
+    If you do not have ``curl`` installed, you can instead use ``wget -O - https://raw.githubusercontent.com/wildmountainfarms/solarthing/master/other/linux/clone_install.sh | sudo bash``.
+    Make sure to also run the ``usermod`` command above.
+
 Checking if java is installed
 -----------------------------
 
