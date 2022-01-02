@@ -3,7 +3,7 @@ Configuring CouchDB
 
 This will help you adjust your ``base.json`` so that SolarThing starts uploading to CouchDB.
 
-First, this assumes that you have installed CouchDB: :doc:`../external/install-couchdb`. After installing, we need to run the SolarThing CouchDB setup program.
+First, this assumes that you have installed CouchDB: :doc:`../other/install-couchdb`. After installing, we need to run the SolarThing CouchDB setup program.
 This adds databases to CouchDB that SolarThing needs. In order to run the setup program, we first need to create our own database configuration file.
 
 Creating ``couchdb.json``

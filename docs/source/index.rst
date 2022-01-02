@@ -2,6 +2,7 @@ Welcome to SolarThing's documentation!
 ======================================
 
 **SolarThing** is an application that can monitor data from a variety of solar charge controllers and inverters.
+Code and issues available at https://github.com/wildmountainfarms/solarthing.
 
 This documentation is targetted at people who have Raspberry Pis or any Debian based operating system.
 However, SolarThing can run on any OS.
@@ -12,9 +13,7 @@ CouchDB is recommended.
 
 To install, checkout :doc:`installation`.
 
-.. note::
-
-   This documentation is incomplete for the time being. Documentation is being migrated here from https://github.com/wildmountainfarms/solarthing
+If you do not have your Raspberry Pi setup yet, you can instead start at :doc:`other/headless-rpi`.
 
 
 Contents
@@ -61,10 +60,12 @@ Contents
 
 .. toctree::
    :maxdepth: 1
-   :caption: External Installs
+   :caption: Other
    
-   external/install-java
-   external/install-couchdb
-   external/install-influxdb
-   external/headless-rpi
-   external/headless-odroid
+   other/install-java
+   other/install-couchdb
+   other/install-influxdb
+   other/headless-rpi
+   other/headless-odroid
+   GitHub <https://github.com/wildmountainfarms/solarthing>
+   Report an Issue <https://github.com/wildmountainfarms/solarthing/issues>

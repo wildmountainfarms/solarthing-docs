@@ -5,7 +5,7 @@ This will help you adjust your ``base.json`` so that SolarThing starts uploading
 
 .. note:: For new users, please use :doc:`influxdb2` instead.
 
-.. seealso:: :doc:`../external/install-influxdb`
+.. seealso:: :doc:`../other/install-influxdb`
 
 
 

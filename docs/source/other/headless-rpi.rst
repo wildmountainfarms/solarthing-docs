@@ -5,6 +5,8 @@ If you want to use your Raspberry Pi without a monitor and have it automatically
 having to attach a keyboard and monitor, this'll help. You can do all SolarThing configuration either using a monitor and keyboard, or
 "headless" over SSH without a monitor or keyboard.
 
+If you are not familiar with Raspberry Pis at all, you may have a better experience using a monitor and keyboard rather than following the instructions below.
+
 Download Image
 ----------------
 
@@ -75,3 +77,14 @@ Using SSH
 If you set everything up correctly, you can ssh into your pi by using username: ``pi`` and password ``raspberry``.
 On Linux or Mac OS, open a terminal and type ``ssh pi@<YOUR IP>``, then enter ``raspberry`` when it prompts for a password. 
 On Windows, you can use something like Putty.
+
+Updating your Raspberry Pi
+----------------------------
+
+Before installing SolarThing, it's a good idea to update everything on your system beforehand and install a few necessary tools.
+
+.. code-block:: console
+
+    pi@raspberrypi:~ $ sudo apt update
+    pi@raspberrypi:~ $ sudo apt install git curl wget less
+    pi@raspberrypi:~ $ sudo apt dist-upgrade -y

@@ -21,6 +21,10 @@ Run these commands to install SolarThing. The script will install to ``/opt/sola
     If you do not have ``curl`` installed, you can instead use ``wget -O - https://raw.githubusercontent.com/wildmountainfarms/solarthing/master/other/linux/clone_install.sh | sudo bash``.
     Make sure to also run the ``usermod`` command above.
 
+.. note::
+
+    You must have ``git`` installed on your system before running the install.
+
 Checking if java is installed
 -----------------------------
 
@@ -31,7 +35,7 @@ Now SolarThing has been installed. That does not mean that ``java`` has been ins
     java -version
 
 
-If you got an unknown command, you need to go to :doc:`external/install-java`.
+If you got an unknown command, you need to go to :doc:`other/install-java`.
 
 
 The solarthing command

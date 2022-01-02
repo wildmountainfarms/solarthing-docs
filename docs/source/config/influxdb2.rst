@@ -3,7 +3,7 @@ InfluxDB 2.X Setup
 
 This will help you adjust your ``base.json`` so that SolarThing starts uploading to InfluxDB.
 
-.. seealso:: :doc:`../external/install-influxdb`
+.. seealso:: :doc:`../other/install-influxdb`
 
 
 Creating ``influxdb2.json``
