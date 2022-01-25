@@ -86,5 +86,5 @@ Before installing SolarThing, it's a good idea to update everything on your syst
 .. code-block:: console
 
     pi@raspberrypi:~ $ sudo apt update
-    pi@raspberrypi:~ $ sudo apt install git curl wget less
+    pi@raspberrypi:~ $ sudo apt install git curl wget less zip
     pi@raspberrypi:~ $ sudo apt dist-upgrade -y

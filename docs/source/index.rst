@@ -67,5 +67,6 @@ Contents
    other/install-influxdb
    other/headless-rpi
    other/headless-odroid
+   other/headless-armbian
    GitHub <https://github.com/wildmountainfarms/solarthing>
    Report an Issue <https://github.com/wildmountainfarms/solarthing/issues>
