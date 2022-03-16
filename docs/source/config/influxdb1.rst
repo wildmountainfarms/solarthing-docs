@@ -32,7 +32,7 @@ And now we will create ``influxdb2.json``
 
 .. code-block:: shell
 
-    nano couchdb.json
+    nano influxdb2.json
 
 Paste this into your newly created file:
 
