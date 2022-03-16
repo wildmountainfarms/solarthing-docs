@@ -11,13 +11,13 @@ To install the systemd service, run this command:
 
 .. code-block:: shell
 
-    sudo /opt/solarthing/other/system/install.sh <NAME OF YOUR DIRECTORY HERE>
+    sudo /opt/solarthing/other/systemd/install.sh <NAME OF YOUR DIRECTORY HERE>
 
 If you configured a rover, you can likely replace ``<NAME OF YOUR DIRECTORY HERE>`` with ``custom_rover`` like so:
 
 .. code-block:: shell
 
-    sudo /opt/solarthing/other/system/install.sh custom_rover
+    sudo /opt/solarthing/other/systemd/install.sh custom_rover
 
 If it was successful, you should see a message ``Reloaded systemctl``.
 
