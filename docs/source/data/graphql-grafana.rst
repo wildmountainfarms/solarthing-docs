@@ -67,7 +67,7 @@ Let's go ahead and install the systemd service, start it, then enable it so it s
 
 .. code-block:: shell
 
-    sudo /opt/solarthing/other/system/install.sh graphql
+    sudo /opt/solarthing/other/systemd/install.sh graphql
     sudo systemctl start solarthing-graphql
     sudo systemctl enable solarthing-graphql
 
