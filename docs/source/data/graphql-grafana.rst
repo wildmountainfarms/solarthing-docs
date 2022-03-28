@@ -126,10 +126,23 @@ That might work right off the bat, but you should also change ``Data path``, ``G
 The ``Data path`` is the path to get into the structure containing the ``Time`` variable. 
 ``Group by`` is useful for advanced SolarThing installations that have multiple devices.
 ``Alias by`` Will make each device have a human friendly name.
+The other parameters can be left blank or default.
+
+.. note:: 
+    The above query and other queries on this page use ``$sourceId`` to represent the source ID.
+
+    You can instead use ``default`` if you do not want to create a ``$sourceId`` variables in Grafana.
+    If you would like to create a variables, you can go here to create a Constant or Custom variable: https://grafana.com/docs/grafana/latest/variables/variable-types/
+
+You should get the above query to work before attempting other queries, as the above query is one of the most simple queries you can have.
 
 
 More queries
 --------------
 
 There is a lack of documentation for more queries. For the time being, the answer to "How do I add more queries?" is figure it out yourself.
+
+This doesn't mean you should blindly start trying to make queries. If you want to create more queries, I recommend you install GraphQL playground: https://github.com/graphql/graphql-playground.
+You can then utilize the autocompletion and see the documentation of all the available queries (There are a lot, many of which you will not use!)
+
 

@@ -29,6 +29,5 @@ Stuff we might use in the future:
 TODO:
 * Find a way to get GraphQL syntax highlighting into pygments
 * Find a way to get JSON5 syntax highlighting into pygments. Or, alternatively, just regular JSON highlighting with the ability to ignore stuff that's not JSON syntax 
-* Setting up variables in grafana including $sourceId
 * Page about common errors including permission issues
 * Page about using socat and about configuring timeouts
