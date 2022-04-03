@@ -67,4 +67,6 @@ Here is an example of how to decompress a particular log file:
 
 .. code-block:: shell
 
+    gunzip -k log_debug_2022.03.20-1.log.gz
+    less -R log_debug_2022.03.20-1.log.gz
     
