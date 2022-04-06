@@ -91,6 +91,11 @@ If you do not, use ``http://<my ip here>:8080/graphql`` where ``<my ip herer>`` 
 
 Keep all the other defaults, then click "Save & Test". You should see a green box pop up indicating success.
 
+.. note:: 
+    
+    If you are using Grafana inside of a docker container, then you will likely have to use ``http://172.17.0.1:8080/graphql`` instead.
+    That particular IP address is used inside of docker containers to refer to the "real" host machine. If you are not using Docker, ignore this.
+
 
 Graph battery voltages
 -----------------------
