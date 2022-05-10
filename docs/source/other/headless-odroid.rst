@@ -61,6 +61,10 @@ The two main commands you will be running are here:
     nmcli dev wifi list
     nmcli dev wifi con 'SSID_1' password 'password_of_ssid1'
 
+.. note:: 
+    
+    If your WiFi network is not currently online, the command will fail. In that case, you can manually create a file in ``/etc/NetworkManager/system-connections/`` named ``MYSSID.nmconnection``.
+
 You can then check to make sure you are connected with this:
 
 .. code-block:: shell
