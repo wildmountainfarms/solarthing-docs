@@ -56,6 +56,7 @@ Contents
    config/config-server
    tracer/clock
    config/commands
+   rover/bulk-request
 
 
 .. toctree::
