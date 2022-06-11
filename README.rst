@@ -21,6 +21,16 @@ To build this yourself, run these commands:
     pip install -r source/requirements.txt
     make html
     xdg-open "file://$(pwd)/build/html/index.html"
+    make latexpdf  # requires latexmk command
+    make epub
+
+Dependencies
+-------------
+
+Depending on what you want to build yourself from the Building section, you can run these commands to install some or all of the dependencies.
+
+.. code-block:: shell
+    apt install python3 python3-pip latexmk
 
 
 Stuff we might use in the future:
