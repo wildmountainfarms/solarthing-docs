@@ -58,11 +58,25 @@ Then you can check the versions of the tools you just installed. You should get 
     $ npm --version
     8.11.0
 
+Now you must install the ``web`` module's dependencies before being able to compile it:
+
+.. code-block:: shell
+
+    cd web/
+    npm install
+    cd ../
+
 You can now compile SolarThing GraphQL (AKA SolarThing Server):
 
 .. code-block:: shell
 
     ./graphql_compile_and_move.sh
+
+.. note::
+
+    If you already have a gradle daemon running, you need to kill using ``./gradlew --stop`` before compiling.
+    If you don't, you may get an error such as ``> A problem occurred starting process 'command 'npm''``, which indicates
+    that gradle cannot find the ``npm`` command.
 
 Running SolarThing GraphQL (AKA SolarThing Server) from IntelliJ
 ---------------------------------------------------------------------------------
