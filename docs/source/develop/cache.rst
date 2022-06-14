@@ -55,3 +55,70 @@ When an error occurs, it is assumed that SolarThing has been updated in a way so
 longer valid. Maybe it doesn't have enough data anymore, or maybe it has too much data, or maybe an error was thrown by
 SolarThing on purpose to indicate that the old cached data is bad and should not be used.
 
+Unless a particular cache type is being actively developed, it is likely that for most cache types, they will be generated once
+and left in the database forever.
+
+Cache Cleanup
+--------------
+
+Currently SolarThing does not have a way to remove old cache data. There is no way to tell if a particular
+document is actively being used, so there is no perfect solution to this. The cache database does not
+take up much space, so this is not a concern.
+
+
+``chargeControllerAccumulation`` Cache Type
+--------------------------------------------
+
+The ``chargeControllerAccumulation`` cache type is one that keeps track of the amount of energy generated
+by a charge controller over a certain interval.
+
+An example ``data`` object looks like this:
+
+.. code-block:: json
+
+    {
+      "identifier": {
+        "type": "outback",
+        "address": 3
+      },
+      "generationKWH": 0.099999905,
+      "firstDateMillis": 1624480199471,
+      "lastDateMillis": 1624481099437,
+      "unknownGenerationKWH": 0,
+      "unknownStartDateMillis": null
+    }
+
+The data is pretty easy to understand, but there are some important things to know. 
+You have an identifier object, which represents what device this data was generated from.
+
+You have a ``firstDateMillis`` and ``lastDateMillis``, which represent the timestamps of the first and last status packets that
+were used to generate this data. Those status packets belong to the device identified by that identifier. There may be any number of
+packets in between the first and last packets, but that information is irrelevant. It is also possible for there to be 0 packets in between
+the first and last packets used for generation, and it is possible that the first packet IS the last packet.
+
+Almost always, ``firstDateMillis`` is actually outside of the interval for this document. It is usually the last packet of the previous interval.
+The reason for this is because let's say that we have two intervals right next to each other. 
+13:15-13:30 and 13:30-13:45. The first interval has data from 13:14 to 13:29 and the second interval has data from 13:29 to 13:44.
+Let's say that during the first interval 1.0 kWh was reported and during the second interval 1.0 kWh was reported. 
+Let's say that the device read these values at these times: ``13:14=4.5kWh``, ``13:29=5.5kWh``, ``13:31=5.6kWh``, ``13:44=6.5kWh``.
+Now, between 13:14 and 13:44, you can see that a total of 2.0 kWh was generated. However, if the generation of this data used 13:31 as the
+start packet for the second interval, the generated values would end up being 1.0 kWh and 0.9 kWh respectively.
+For this reason, the last packet from the previous interval is used for the start packet to make sure no data is "left behind" when
+generating the data.
+
+In this case we have a ``generationKWH`` which represents the energy generated during this period.
+
+"Unknown" Data in ``chargeControllerAccumulation`` 
+-----------------------------------------------------
+
+In the above section, that particular piece of data is "known" because ``startDateMillis`` and ``endDateMillis`` are not null.
+"Known" pieces of data can have unknown components to them, which represents the accumulation of preceding periods where data in those periods
+for that particular device were "unknown".
+
+A particular piece of data is completely unknown if ``startDateMillis`` is null and ``endDateMillis`` is null. If that is the case,
+then that "unknown" data does not have an "unknown" component to it. It is only "unknown".
+
+In the above section, there is an example ``data`` object that has ``unknownGenerationKWH`` = 0 and ``unknownStartDateMillis`` = null.
+This means that particular piece of data is "known", and it has no "unknown" component.
+
+
