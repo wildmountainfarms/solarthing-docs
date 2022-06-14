@@ -175,7 +175,7 @@ Now let's say that we have two intervals, both with unknown components.
 
     Combined result:
     Interval: 14:00-16:00
-    generationKWH=1.9+0.9+0.1 = 2.9
+    generationKWH=1.3+0.9+0.1 = 2.3
     unknownGenerationKWH=0.2
 
 We see that to calculate the new ``generationKWH``, we add up both ``generationKWH``, then also add the later interval's unknown component.
