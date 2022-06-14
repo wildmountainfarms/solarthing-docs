@@ -108,7 +108,7 @@ generating the data.
 
 In this case we have a ``generationKWH`` which represents the energy generated during this period.
 
-"Unknown" Data in ``chargeControllerAccumulation`` 
+"Unknown" Data in ``chargeControllerAccumulation``
 -----------------------------------------------------
 
 In the above section, that particular piece of data is "known" because ``startDateMillis`` and ``endDateMillis`` are not null.
@@ -121,4 +121,62 @@ then that "unknown" data does not have an "unknown" component to it. It is only 
 In the above section, there is an example ``data`` object that has ``unknownGenerationKWH`` = 0 and ``unknownStartDateMillis`` = null.
 This means that particular piece of data is "known", and it has no "unknown" component.
 
+Here's an example of data that would cause the following results:
 
+.. code-block::
+
+    # The following values are the timestamps of MX3 packets and the reading of MX3's kWh field
+    12:59=3.3
+    ----- 13:00
+    13:01=3.3
+    13:09=3.5
+    13:14=3.6
+    ----- 13:15
+    ----- 13:30
+    ----- 13:45
+    13:46=4.0
+    13:50=4.2
+    13:55=4.3
+    ----- 14:00
+
+    Results:
+    13:00-13:15 generationKWH=0.3, start=12:59, end=13:14, no unknown component
+    13:15-13:30 unknown
+    13:30-13:45 unknown
+    13:45-14:00 generationKWH=0.3, start=13:46, end=13:55, unknownStart=13:14, unknownGeneration=0.4
+
+You can now see that the unknown component represents the accumulation of data from previous intervals that were unknown all the way back to
+the last "known" interval. This allows us to say "I know that 0.3 kWh was generated between 13:45 and 14:00", 
+and "I know that sometime between 13:14 and 13:46 0.4 kWh was generated.
+I don't know if all of that 0.4 kWh came from one period or another, I just know that it happened."
+
+Unknown components are necessary to prevent accumulation data from becoming lost if a device disconnects for an extended period of time.
+
+Combining Intervals of Data
+-----------------------------
+
+In the cache database, data always goes in at fixed intervals. However, when you take that data out of the database (or calculate it yourself),
+having a bunch of 15 minute intervals usually isn't that useful. Maybe you want hour long intervals or day long intervals.
+Each cache type supports combining two intervals of data right next to each other. So, you can combine intervals 13:15-13:30 and 13:30-13:45
+to make a 13:15-13:45 interval. You can keep combining intervals of data until you get a bunch of intervals that you want, or more commonly
+combining all the intervals so you can get a single piece of data, such as the generation kWh for a single day.
+
+Let's say that we combine a two ``chargeControllerAccumulation`` types of data. 
+``13:15-13:30 = 0.5 kWh generated`` and
+``13:30-13:45 = 0.6 kWh generated``.
+Combining them gives us a result of ``13:15-13:45 = 1.1 kWh generated``.
+
+Now let's say that we have two intervals, both with unknown components.
+
+.. code-block::
+
+    14:00-15:00 generationKWH=1.3, unknownGenerationKWH=0.2
+    15:00-16:00 generationKWH=0.9, unknownGenerationKWH=0.1
+
+    Combined result:
+    Interval: 14:00-16:00
+    generationKWH=1.9+0.9+0.1 = 2.9
+    unknownGenerationKWH=0.2
+
+We see that to calculate the new ``generationKWH``, we add up both ``generationKWH``, then also add the later interval's unknown component.
+The unkonwn component of the first interval remains in the resulting combining.
