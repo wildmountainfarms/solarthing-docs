@@ -22,7 +22,7 @@ When developing SolarThing, you should install it in a different directory. Typi
     $ cd ~/workspace/
     $ git clone https://github.com/wildmountainfarms/solarthing
 
-If you want to make commits, I recommend that you `fork <https://docs.github.com/en/get-started/quickstart/fork-a-repo>` it
+If you want to make commits, I recommend that you `fork <https://docs.github.com/en/get-started/quickstart/fork-a-repo>`_ it
 and clone your own, forked, repository instead of cloning ``https://github.com/wildmountainfarms/solarthing``.
 
 To see if you can compile the main SolarThing jar, you can run this in your terminal:

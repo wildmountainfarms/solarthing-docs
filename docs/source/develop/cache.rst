@@ -11,7 +11,7 @@ Database Structure
 Unlike other databases in SolarThing, ``solarthing_cache`` is not set up to be queried using a view. 
 It must be queried using the ID of the document. The documents are named like so: ``cache_<time start>_<duration>_<source ID>_<cache name>``.
 
-Querying this data usually means making a `bulk get <https://docs.couchdb.org/en/stable/api/database/bulk-api.html?highlight=bulk#post--db-_bulk_get>` request.
+Querying this data usually means making a `bulk get <https://docs.couchdb.org/en/stable/api/database/bulk-api.html?highlight=bulk#post--db-_bulk_get>`_ request.
 
 Packet Structure
 ------------------
