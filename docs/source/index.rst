@@ -69,6 +69,6 @@ Contents
    other/headless-rpi
    other/headless-odroid
    other/headless-armbian
-   develop/setup
+   develop/index
    GitHub <https://github.com/wildmountainfarms/solarthing>
    Report an Issue <https://github.com/wildmountainfarms/solarthing/issues>
