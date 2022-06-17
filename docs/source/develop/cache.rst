@@ -246,3 +246,71 @@ This gives choice to the users of this data so they can either ignore the "gap" 
 You can see the logic of combining two battery record caches here:
 :blob:`master/core/src/main/java/me/retrodaredevil/solarthing/type/cache/packets/data/BatteryRecordDataCache.java`
 
+
+``IdentificationCacheNodeCreator``: generating data
+-----------------------------------------------------
+
+IdentificationCacheNodeCreator is an interface that is used for generating data for a single device.
+You can view it here:
+:blob:`master/core/src/main/java/me/retrodaredevil/solarthing/rest/cache/creators/IdentificationCacheNodeCreator/java`
+
+The interface is pretty simple. ``getAcceptedType()`` should return the class of the type to accept. 
+For instance ``BatteryVoltage`` to get any type of device that provides the battery voltage.
+``getCacheName()`` should return the name of the cache, which should be unique among all cache names. Some examples of names
+already in use are ``batteryRecord``, ``chargeControllerAccumulation``, and ``fxAccumulation``. 
+New names should use camelCase, and should NOT be redundant by including "cache" in the name.
+
+The most important method of this interface is the create method. The parameters taken are as follows:
+
+* ``identifierFragment``: Represents the fragment and identifier for a given device
+* ``packets``: The packets of the type given by ``getAcceptedType()``. 
+  Note that these packets may and will be out of the range of the given period. 
+  The implementation should filter for the given period or use the extra data for *smart* calculations. 
+  You can assume these are sorted in ascending order.
+* ``periodStart``: The start time of the period that data will be returned for
+* ``periodDuration``: The duration of the period that data will be returned for
+
+One question one might have is why so much data is provided. The reason for this is because we want
+and period to be able to calculate its "unknown" component by backtracking up to ~4 hours before the period even started.
+In fact, any time this is called, it is expected that data should be provided for at least 4 hours before the start of the period.
+Usually, much more data will be provided when calling this method, but it should not use all of that. By not using all of the data
+provided, reproducible caches are possible so no matter how much data is provided in the ``packets`` list, 
+the same result should occur each time for a given cache and device.
+
+The data returned is an ``IdentificationCacheNode``, which holds the fragment of the device and also the data, which is required to hold
+the identifier of the device because the data is of the type of ``IdentificationCacheData``, which is the common type for data that can be combined.
+
+So to recap, when calling the ``create`` method of a ``IdentificationCacheNodeCreator``, data for a single device is provided,
+and the returned value is the data for that device for the given period. A ``IdentificationCacheNodeCreator`` only deals with a single
+device and a single period at a time!
+
+``CacheCreator``: generating data
+----------------------------------
+
+A ``CacheCreator`` is at a lower level of abstraction than a ``IdentificationCacheNodeCreator``. The result from a ``CacheCreator``
+is what is stored right in the database. It has a single method: ``createFrom()``. This method takes a source ID,
+a list of packets, and the period. This list of packets follows the same 4 hour rule that ``IdentificationCacheNodeCreator`` follows,
+as its implementation directly calls ``IdentificationCacheNodeCreator``'s ``create()`` method.
+
+``DefaultIdentificationCacheCreator``: ``CacheCreator`` implementation
+--------------------------------------------------------------------------------------------------
+
+A ``CacheCreator`` doesn't have to necessarily deal with ``IdentificationCacheNodeCreator``s. 
+The main (and only) implementation of ``CacheCreator`` is ``DefaultIdentificationCacheCreator``, 
+which takes a ``IdentificationCacheNodeCreator``.
+
+This implementation is the lowest level of abstraction for data generation. Any lower and we'll start getting into
+the logic for determining what periods to generate, cache, and store in the database.
+
+``BatteryRecordCacheNodeCreator`` implementation
+--------------------------------------------------
+
+``BatteryRecordCacheNodeCreator`` implements ``IdentificationCacheNodeCreator`` and has the main logic for generating
+``batteryRecord`` caches. View it here: :blob:`master/core/src/main/java/me/retrodaredevil/solarthing/rest/cache/creators/BatteryRecordCacheNodeCreator.java`
+
+Cache Logic
+-------------
+
+The actual logic for generating caches and storing them in the database is present here: 
+:blob:`master/graphql/src/main/me/retrodaredevil/solarthing/rest/cache/CacheHandler.java`
+
