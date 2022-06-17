@@ -180,3 +180,69 @@ Now let's say that we have two intervals, both with unknown components.
 
 We see that to calculate the new ``generationKWH``, we add up both ``generationKWH``, then also add the later interval's unknown component.
 The unkonwn component of the first interval remains in the resulting combining.
+
+You can see this logic for yourself here:
+:blob:`master/core/src/main/java/me/retrodaredevil/solarthing/type/cache/packets/data/ChargeControllerAccumulationDataCache.java`
+
+
+``batteryRecord`` Cache Type
+--------------------------------------------
+
+The ``batteryRecord`` cache is one that keeps track of the minimum and maximum battery voltage, along with the
+battery volt hours for an interval of time, for a single device. Minimum and maximum battery voltages are useful,
+but battery volt hours is usually used to determine the average (integral over interval).
+
+An example battery record's ``"data"`` object may look like this:
+
+.. code-block:: json
+
+    {
+      "identifier": {
+        "type": "outback",
+        "address": 1
+      },
+      "firstDateMillis": 1655321348930,
+      "lastDateMillis": 1655322224927,
+      "unknownStartDateMillis": null,
+      "record": {
+        "minBatteryVoltage": 24.4,
+        "minBatteryVoltageDateMillis": 1655321543926,
+        "maxBatteryVoltage": 25.6,
+        "maxBatteryVoltageDateMillis": 1655321447930,
+        "unknownBatteryVoltageHours": 0,
+        "unknownDurationMillis": 0,
+        "batteryVoltageHours": 6.056228924143589,
+        "knownDurationMillis": 875997
+      }
+    }
+
+The data keeps track of the time when the battery was at a minimum, and the time it was at a maximum.
+
+You'll notice that there is something called ``knownDurationMillis``. This is the total duration that the
+``batteryVoltageHours`` integral has been calculated over. For a packet in the database ``lastDateMillis - firstDateMillis``,
+is exactly the same as ``knownDurationMillis``. When we get into combining later, we will see how these two values may end up being different.
+
+
+"Unknown" data is similar to that of a ``chargeControllerAccumulation`` cache. Unknown data represents data from
+the last known period up to the start of this period. The main difference is the precision of the data.
+Charge controllers report their power integral (energy), so even if a charge controller disconnects, the amount of energy
+it generated can be reliably calculated. This is not the case for a ``batteryRecord``'s volt hours calculation.
+An unknown component is always calculated using two data points: The last battery voltage from before the current period,
+and the first battery voltage in this period. That means that while ``unknownBatteryVoltageHours`` does have the volt hours unit,
+it can be an unreliable estimate of what actually happened during the (possibly multiple) unknown periods.
+
+Combining ``batteryRecord``
+------------------------------
+
+Combining two battery record cache periods is relatively simple. The minimum of the minimums becomes the new minimum 
+and the maximum of the maximums becomes the new maximum. The battery voltage hours gets added up along with the known duration hours.
+The tricky part, is what happens to unknown data. If we followed this exactly how the charge controller cache handles this,
+the unknown component of the later period would be added to the known component of the resulting combination.
+However, remember that an unknown component was calculated using two data points, and is extremely inprecise.
+Because of this, a battery record cache also has a "gap" component, which represents unknown components 
+somewhere in the middle of the period. This allows someone to include or exclude the gap component in the calculation of an average.
+This gives choice to the users of this data so they can either ignore the "gap" component, or just add it onto the known component.
+
+You can see the logic of combining two battery record caches here:
+:blob:`master/core/src/main/java/me/retrodaredevil/solarthing/type/cache/packets/data/BatteryRecordDataCache.java`
+
