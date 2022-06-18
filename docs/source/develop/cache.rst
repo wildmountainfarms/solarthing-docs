@@ -295,7 +295,7 @@ as its implementation directly calls ``IdentificationCacheNodeCreator``'s ``crea
 ``DefaultIdentificationCacheCreator``: ``CacheCreator`` implementation
 --------------------------------------------------------------------------------------------------
 
-A ``CacheCreator`` doesn't have to necessarily deal with ``IdentificationCacheNodeCreator``s. 
+A ``CacheCreator`` doesn't have to necessarily deal with ``IdentificationCacheNodeCreator`` s. 
 The main (and only) implementation of ``CacheCreator`` is ``DefaultIdentificationCacheCreator``, 
 which takes a ``IdentificationCacheNodeCreator``.
 
@@ -334,11 +334,11 @@ In this case, we will be implementing the ``IdentificationCacheData`` interface,
 abstract implementation of that called ``BaseAccumulationDataCache``. Now, let's come up with some sort of name for our cache such as
 "cheese sandwich cache". 
 
-We will create a class called ``CheeseSandwishDataCache``, which will extend ``BaseAccumulationDataCache``.
+We will create a class called ``CheeseSandwichDataCache``, which will extend ``BaseAccumulationDataCache``.
 This class should be created in the ``core`` module under the ``me.retrodaredevil.solarthing.type.cache.packets.data`` package.
 We should create a field like so: ``public static final String CACHE_NAME = "cheeseSandwich";``. 
 We should annotate our class with ``@JsonExplicit``, and create a constructor annotated with ``@JsonCreator``.
-You can see an example here: :blob:`master/core/src/main/java/me/retrodaredevil/solarthing/rest/cache/creators/BatteryRecordCacheNodeCreator.java`.
+You can see an example here: :blob:`master/core/src/main/java/me/retrodaredevil/solarthing/type/cache/packets/data/BatteryRecordDataCache.java`
 
 You should populate your newly created class with useful data and implement the ``combine()`` method.
 
@@ -348,10 +348,11 @@ This should implement ``IdentificationCacheNodeCreator<CheeseSandwichDataCache, 
 Note that you can replace ``CheeseSandwichStatusPacket`` with whatever type of class that you need to use to generate data.
 Note that class must implement the ``Identifiable`` interface AND, the identifier returned must be serializabe and deserializable to and from JSON.
 Please make sure you check to make sure that the type of identifiable used by that class is present in the ``@JsonSubTypes`` in the ``Identifier`` interface.
+You can see an example here: :blob:`master/graphql/src/main/java/me/retrodaredevil/solarthing/rest/cache/creators/BatteryRecordCacheNodeCreator.java`.
 
 Now that you have your class created, it's time to implement the required methods. The ``getAcceptedType()`` method can return
 the class of what you replaced ``CheeseSandwichStatusPacket`` with. ``getCacheName()`` returns ``CheeseSandwichDataCache.CACHE_NAME``.
-Now it's time to implmeent the create method. This is where you may have to get creative to create the perfect algorithm to
+Now it's time to implement the create method. This is where you may have to get creative to create the perfect algorithm to
 generate your data, or you can look at one of the many implementations of this method for other types of cache data.
 
 Once you are done, go into the ``CacheHandler`` class, and add an entry similer to the other entries under the ``CACHE_CREATORS`` field.
