@@ -314,3 +314,46 @@ Cache Logic
 The actual logic for generating caches and storing them in the database is present here: 
 :blob:`master/graphql/src/main/me/retrodaredevil/solarthing/rest/cache/CacheHandler.java`
 
+Usages of caches
+--------------------
+
+Currently, the SolarThing Server program exposes a REST API for querying cache data, which then will call
+methods provided by ``CacheHandler``. You can see this here: 
+:blob:`master/graphql/src/main/me/retrodaredevil/solarthing/rest/cache/CacheController.java`
+
+Currently, nothing actually uses that REST endpoint, but there are usages of ``CacheController`` in some of the GraphQL queries.
+Typically, a GraphQL query that needs to use cache data will be provided a ``CacheController`` object. You can see an example here:
+:blob:`master/graphql/src/main/me/retrodaredevil/solarthing/rest/graphql/service/SolarThingGraphQLLongTermService.java`
+
+Creating your own cache
+-------------------------
+
+If you would like to make your own cache, then you first need to decide a couple of things. 
+We will assume that you would like to make a cache that is based around data for each device of a certain type.
+In this case, we will be implementing the ``IdentificationCacheData`` interface, or more likely, we will be extending an
+abstract implementation of that called ``BaseAccumulationDataCache``. Now, let's come up with some sort of name for our cache such as
+"cheese sandwich cache". 
+
+We will create a class called ``CheeseSandwishDataCache``, which will extend ``BaseAccumulationDataCache``.
+This class should be created in the ``core`` module under the ``me.retrodaredevil.solarthing.type.cache.packets.data`` package.
+We should create a field like so: ``public static final String CACHE_NAME = "cheeseSandwich";``. 
+We should annotate our class with ``@JsonExplicit``, and create a constructor annotated with ``@JsonCreator``.
+You can see an example here: :blob:`master/core/src/main/java/me/retrodaredevil/solarthing/rest/cache/creators/BatteryRecordCacheNodeCreator.java`.
+
+You should populate your newly created class with useful data and implement the ``combine()`` method.
+
+Now, we need to create our class to generate the data. We will create a class called ``CheeseSandwichCacheNodeCreator``
+in the ``graphql`` module under the ``me.retrodaredevil.solarthing.rest.cache.creators`` package.
+This should implement ``IdentificationCacheNodeCreator<CheeseSandwichDataCache, CheeseSandwichStatusPacket>``.
+Note that you can replace ``CheeseSandwichStatusPacket`` with whatever type of class that you need to use to generate data.
+Note that class must implement the ``Identifiable`` interface AND, the identifier returned must be serializabe and deserializable to and from JSON.
+Please make sure you check to make sure that the type of identifiable used by that class is present in the ``@JsonSubTypes`` in the ``Identifier`` interface.
+
+Now that you have your class created, it's time to implement the required methods. The ``getAcceptedType()`` method can return
+the class of what you replaced ``CheeseSandwichStatusPacket`` with. ``getCacheName()`` returns ``CheeseSandwichDataCache.CACHE_NAME``.
+Now it's time to implmeent the create method. This is where you may have to get creative to create the perfect algorithm to
+generate your data, or you can look at one of the many implementations of this method for other types of cache data.
+
+Once you are done, go into the ``CacheHandler`` class, and add an entry similer to the other entries under the ``CACHE_CREATORS`` field.
+Now go to ``CacheController`` and add a method similer to the other methods already present, but for your data types.
+To test it, use something to hit the newly created endpoint that you have made, and see if it works.
