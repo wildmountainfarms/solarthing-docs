@@ -25,6 +25,8 @@ Run these commands to install SolarThing. The script will install to ``/opt/sola
 
     You must have ``git`` installed on your system before running the install.
 
+After installing and running the ``usermode`` command, you should log out and back in, for your user to have full access to the ``/opt/solarthing`` directory.
+
 Checking if java is installed
 -----------------------------
 
