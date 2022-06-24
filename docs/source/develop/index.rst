@@ -9,3 +9,4 @@ This contains documentation for contributing to SolarThing.
 
    setup
    cache
+   graphql
