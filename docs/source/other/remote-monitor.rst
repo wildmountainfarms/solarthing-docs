@@ -53,3 +53,37 @@ Now run these commands to create your private and public SSH keys:
 
 The ``cat id_rsa.pub`` command gives some output that you will need later. Copy it to a notepad so you can copy it again later.
 Now go ahead and start this service using ``sudo docker compose up -d``.
+
+Forward an entire network
+-----------------------------
+
+If you have a network with a unique range of IPs, you can use redsocks to forward a proxy server created by SSH. For instance:
+
+.. code-block:: shell
+
+    # In one terminal:
+    ssh -D 8181 -N batterypi
+
+    # In another
+    sudo apt install redsocks
+
+    sudo vi /etc/sysctl.conf
+    # uncomment net.ipv4.ip_forward=1
+    sudo sysctl -p
+
+    sudo vi /etc/redsocks.conf
+    # set local_ip=127.0.0.1
+    # set local_port=12777
+    # set ip=127.0.0.1 (the ip of your SOCKS proxy server)
+    # set port=8181 (the port of your SOCKS proxy server)
+    sudo systemctl restart redsocks.service
+
+    sudo iptables -t nat -N REDSOCKS
+    sudo iptables -t nat -A REDSOCKS -p tcp -d 192.168.10.0/24 -j REDIRECT --to-ports 12777
+
+    sudo iptables -t nat -A OUTPUT -p tcp -j REDSOCKS
+
+    # check results
+    sudo iptables -L -v -n -t nat --line-numbers
+
+    # The easiest way to reset iptables if you mess up is to restart your computer

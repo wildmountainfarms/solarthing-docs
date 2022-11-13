@@ -60,3 +60,11 @@ Basic CouchDB Setup
 Newer installs of CouchDB require some setup. Note this is different from the SolarThing setup required to use the database.
 
 Create a database called ``_users`` and a database called ``_replicator``. The default options for creating these databases are fine.
+
+
+Keep user logged in
+---------------------
+
+Sometimes you may want to keep users logged in for longer than the default. Go to the settings page: http://127.0.0.1:5984/_utils/#_config.
+You will configure the ``timeout`` setting: https://docs.couchdb.org/en/3.2.2-docs/config/auth.html#chttpd_auth/timeout.
+Add an option with section: ``chttpd_auth``, name: ``timeout``, and value in seconds. I recommend 3600 for 1 hour timeout.
