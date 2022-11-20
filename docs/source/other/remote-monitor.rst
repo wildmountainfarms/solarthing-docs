@@ -4,8 +4,14 @@ Remote Monitoring
 There are many ways to remotely monitor your system. This page demonstrates how to setup a way to remotely monitor
 your system if you cannot port forward on your router or ISP.
 
-On the device to monitor
+Use SSH Port Forward Client to make your device available for remote monitoring
 --------------------------
+
+If you cannot directly port forward port 22 on your device, but have another device (on another network) that you can port forward on,
+you can use an ssh port forward client to make port 22 available through the other device.
+
+The rest of this section helps you configure this using 2 docker images, although if you wanted to you could figure this out yourself without any reliance on these programs.
+These 2 docker images just use the ssh command under the hood.
 
 Install docker:
 
@@ -54,8 +60,79 @@ Now run these commands to create your private and public SSH keys:
 The ``cat id_rsa.pub`` command gives some output that you will need later. Copy it to a notepad so you can copy it again later.
 Now go ahead and start this service using ``sudo docker compose up -d``.
 
+Setting up the SSH Forward Server
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This sub-section assumes that you need a separate SSH server. This section is usually optional because most people
+are already running SSHD server daemon on the device that is able to port forward. In the case you want to use that, ignore this section
+and create a user and add the authorized public key (copied above) to ``/home/<user>/.ssh/authorized_keys``. 
+In the case you want to have a separate SSH server just for forwarding ports (recommended), keep reading.
+
+Install docker on this machine just like you did on your client machine.
+
+.. code-block:: shell 
+
+    # Install docker like the above section showed
+
+    # confirm installed with compose:
+    docker compose version
+
+    cd /opt/containers/
+    mkdir ssh-forward-server
+    cd ssh-forward-server
+    touch sshkey.pub  # this is basically the same as your authorized_keys file
+
+Edit ``docker-compose.yml`` in the ``ssh-forward-client`` directory and paste these contents into it:
+
+.. code-block:: yaml
+
+    version: '3.7'
+
+    services:
+      ssh-forward-server:
+        image: 'davidlor/ssh-port-forward-server:0.1.1'
+        restart: unless-stopped
+        environment:
+          - 'SSH_PORT=2222'
+        ports:
+          - '2222:2222'
+          - '9025:9025'  # notice the *second* 9025 is the same as the 9025 above. You can change this to 7045:9025 if you would like, just keep the second port the same as the one used above
+        volumes:
+          - './sshkey.pub:/ssh_pubkey:ro'
+          - './ssh-folder:/etc/ssh'
+
+Now take the text from the public key in the last second, and paste it into the ``sshkey.pub`` you created.
+You can now use ``docker compose up -d`` to start this server. The port 9025 on this device should forward all traffic to port 22 on your client device!
+
+Secure your SSH server
+------------------------
+
+.. note:: This section is not for securing the ssh-port-forward-* containers. It is for securing/hardening SSHD daemons running on any of your devices.
+
+If you have your SSH server exposed directly or indirectly (by using ssh port forwarding), your server will eventually start to be hit
+with many login attempts from bots. You can secure your server by requiring a publickey to be used, rather than a password.
+Before you make these optional but recommended changes, you should create an SSH key and use ``ssh-copyid`` command to authorize yourself
+on your device. (See: https://www.ssh.com/academy/ssh/copy-id)
+
+Typically one would just disable password authentication completely, but I prefer to only allow password authentication on local networks.
+Edit ``/etc/ssh/sshd_config`` and add this at the bottom:
+
+.. code-block::
+  PasswordAuthentication no
+  Match Address 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+    PasswordAuthentication yes
+
 Forward an entire network
 -----------------------------
+
+.. note::
+
+  This section assumes that you have a device that you can SSH into on a remote network. (You can optionally do this after you finish setting up port forwarding an SSH port)
+
+.. note::
+
+  This section is for advanced users
+
 
 If you have a network with a unique range of IPs, you can use redsocks to forward a proxy server created by SSH. For instance:
 
