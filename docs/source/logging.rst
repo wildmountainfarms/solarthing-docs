@@ -91,14 +91,12 @@ Graylog is an application to do just that. I recommend installing this in the sa
     sudo chown -R 1000:root es_data  # es_data requires certain permissions for the elasticsearch image to like it
 
     mkdir mongo_data/
-    sudo chown -R 2000:2000 graylog_data mongo_data  # mongo allows any uid:gid combination, so we will use 2000 for both here
+    sudo chown -R 2000:2000 mongo_data  # mongo allows any uid:gid combination, so we will use 2000 for both here
 
-    mkdir graylog_data/
+    mkdir -p graylog_data/config/
     wget https://raw.githubusercontent.com/Graylog2/graylog-docker/4.3/config/graylog.conf
     mv graylog.conf graylog_data/config/
     sudo chown -R 1100:1100 graylog_data  # graylog_data requires certain permissions for the graylog image to like it
-
-
 
 
 Edit ``docker-compose.yml`` in the ``graylog`` directory and paste these contents into it:
@@ -164,9 +162,9 @@ Edit ``docker-compose.yml`` in the ``graylog`` directory and paste these content
           # GELF UDP
           - 12201:12201/udp
 
-    networks:
-      default:
-        name: $DOCKER_MY_NETWORK
+    #networks: # only uncomment this if you specify $DOCKER_MY_NETWORK in .env file
+    #  default:
+    #    name: $DOCKER_MY_NETWORK
 
 Now navigate to the IP and port you specified in your docker compose in your web browser.
 You should see Graylog appear. You can login with admin/admin or admin/your_password_you_set assuming you changed it from the default.
@@ -182,3 +180,19 @@ and add the contents of this file to it: https://github.com/wildmountainfarms/so
 Restart your SolarThing instance and navigate to search in Graylog. You should see entries popping up.
 You can use a search such as ``application: "automation" AND level:[0 TO 6]`` to narrow your results.
 The query language is described here: https://docs.graylog.org/docs/query-language
+
+Now that you have Graylog up and running with SolarThing, you can also use it for your docker containers. You can add this to your compose file:
+
+.. code-block:: yaml
+
+    # ...
+        logging:
+          driver: gelf  # https://docs.docker.com/config/containers/logging/gelf/
+          options:
+            gelf-address: "udp://localhost:12201"
+
+You can also make more logging from rsyslog go to Graylog. Just add a Syslog input on port 1514.
+Then, add this line to the end of ``/etc/rsyslog.conf``: ``*.* action(type="omfwd" target="localhost" port="1514" protocol="udp" template="RSYSLOG_SyslogProtocol23Format")``.
+More details here: https://docs.graylog.org/docs/syslog.
+
+
