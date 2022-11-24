@@ -70,6 +70,7 @@ Contents
    other/headless-odroid
    other/headless-armbian
    other/remote-monitor
+   other/security
    develop/index
    GitHub <https://github.com/wildmountainfarms/solarthing>
    Report an Issue <https://github.com/wildmountainfarms/solarthing/issues>

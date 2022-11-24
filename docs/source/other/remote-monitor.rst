@@ -104,24 +104,6 @@ Edit ``docker-compose.yml`` in the ``ssh-forward-client`` directory and paste th
 Now take the text from the public key in the last second, and paste it into the ``sshkey.pub`` you created.
 You can now use ``docker compose up -d`` to start this server. The port 9025 on this device should forward all traffic to port 22 on your client device!
 
-Secure your SSH server
-------------------------
-
-.. note:: This section is not for securing the ssh-port-forward-* containers. It is for securing/hardening SSHD daemons running on any of your devices.
-
-If you have your SSH server exposed directly or indirectly (by using ssh port forwarding), your server will eventually start to be hit
-with many login attempts from bots. You can secure your server by requiring a publickey to be used, rather than a password.
-Before you make these optional but recommended changes, you should create an SSH key and use ``ssh-copyid`` command to authorize yourself
-on your device. (See: https://www.ssh.com/academy/ssh/copy-id)
-
-Typically one would just disable password authentication completely, but I prefer to only allow password authentication on local networks.
-Edit ``/etc/ssh/sshd_config`` and add this at the bottom:
-
-.. code-block::
-  PasswordAuthentication no
-  Match Address 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
-    PasswordAuthentication yes
-
 Forward an entire network
 -----------------------------
 
