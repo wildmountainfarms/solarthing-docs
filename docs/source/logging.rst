@@ -42,8 +42,8 @@ You can also look at the logs "live", by using this command:
 
 .. note:: 
     
-   By default the debug log output is not "flushed" immediately. That means that while viewing it data will be cut off.
-   This is to reduce the amount of time spent writing to disk, which is critical in maintaining a stable system on Raspberry Pis.
+    By default the debug log output is not "flushed" immediately. That means that while viewing it data will be cut off.
+    This is to reduce the amount of time spent writing to disk, which is critical in maintaining a stable system on Raspberry Pis.
 
 If you do not want to switch between ``less -R`` and ``tail -f``, you can just use ``less -R`` by itself. 
 When you want to start "tailing" a file, just press Shift+F. When you want to go back to browsing the file, just press CTRL+C.
@@ -112,6 +112,7 @@ Edit ``docker-compose.yml`` in the ``graylog`` directory and paste these content
         volumes:
           - ./mongo_data:/data/db
         user: "2000:2000"
+        restart: unless-stopped
       # Elasticsearch: https://www.elastic.co/guide/en/elasticsearch/reference/7.10/docker.html
       elasticsearch:
         image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
@@ -123,6 +124,8 @@ Edit ``docker-compose.yml`` in the ``graylog`` directory and paste these content
           - transport.host=localhost
           - network.host=0.0.0.0
           - "ES_JAVA_OPTS=-Dlog4j2.formatMsgNoLookups=true -Xms512m -Xmx512m"
+          #- "ES_JAVA_OPTS=-Dlog4j2.formatMsgNoLookups=true -Xms512m -Xmx512m -XX:+UseG1GC"
+        restart: unless-stopped
         ulimits:
           memlock:
             soft: -1
@@ -137,7 +140,6 @@ Edit ``docker-compose.yml`` in the ``graylog`` directory and paste these content
         container_name: graylog
         volumes:
           - ./graylog_data:/usr/share/graylog/data
-        #user: "2000:2000"
         environment:
           # CHANGE ME (must be at least 16 characters)! https://docs.graylog.org/docs/manual-setup password_secret. Generated using pwgen
           - GRAYLOG_PASSWORD_SECRET=forpasswordencryption
@@ -195,4 +197,22 @@ You can also make more logging from rsyslog go to Graylog. Just add a Syslog inp
 Then, add this line to the end of ``/etc/rsyslog.conf``: ``*.* action(type="omfwd" target="localhost" port="1514" protocol="udp" template="RSYSLOG_SyslogProtocol23Format")``.
 More details here: https://docs.graylog.org/docs/syslog.
 
+Graylog Message Retention
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+If you pour all of your logs into Graylog, you will likely want to automatically delete some of those logs after a period of time.
+This is where Graylog's Indices & Index Sets come into play. It's official documentation is here: https://docs.graylog.org/docs/index-model.
+
+There are numerous ways to configure this. The way I will describe is to make it so that debug logs are only retained for a week.
+
+First, create a new Index Set. Name it ``SolarThing Debug Set`` and set its Index prefix to ``solarthing_debug``.
+Use the defaults for Index Rotation Configuration. For Index Retention Configuration, set "Max number of indices" to 7
+so that no more than 7 days of debug logs will be kept.
+
+Now we have a set created, we need to create a stream that will filter only debut messages so that we can send it to our new set.
+Call this ``SolarThing Debug Stream``. Go ahead and check "Remove matches from 'All messages' stream" so that
+debug messages before making this stream are put into this stream.
+Manage the rules of this stream. Select your GELF input.
+Add a new stream rule with: Field: ``level``, Type: ``smaller than``, Value: ``7``, Inverted: ``Yes``.
+The result of this is ``level must not be smaller than 7``.
+Now you can start the stream.
