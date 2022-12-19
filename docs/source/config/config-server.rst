@@ -71,7 +71,7 @@ Once you run that command, you should be able to start typing commands. You can 
 
 .. code-block:: console
 
-    joshua@batterypi:/opt/solarthing/program/custom_rover $ nc localhost 5051
+    pi@raspberrypi:/opt/solarthing/program/custom_rover $ nc localhost 5051
     batteryVoltage
     24.5
 

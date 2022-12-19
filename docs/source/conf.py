@@ -3,8 +3,8 @@
 # -- Project information
 
 project = 'SolarThing'
-copyright = '2021, Joshua Shannon'
-author = 'Joshua Shannon'
+copyright = '2022, Lavender Shannon'
+author = 'Lavender Shannon'
 
 # release = '0.1'
 # version = '0.1.0'

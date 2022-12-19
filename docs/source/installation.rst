@@ -89,7 +89,7 @@ You should get output such as
 .. code-block:: console
 
     pi@raspberrypi:/opt/solarthing$ solarthing version
-    SolarThing made by Joshua Shannon
+    SolarThing made by Lavender Shannon
     Jar: solarthing-SNAPSHOT.jar
     Jar last modified: 2021-12-20T08:28:27.040Z
     Java version: 11.0.11

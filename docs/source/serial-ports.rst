@@ -31,7 +31,7 @@ Running ``ls /dev/tty*``
 
 .. code-block:: console
 
-    joshua@batterypi:/opt/solarthing/program/custom_tracer $ ls /dev/tty*
+    pi@raspberrypi:/opt/solarthing/program/custom_tracer $ ls /dev/tty*
     /dev/tty    /dev/tty19  /dev/tty3   /dev/tty40  /dev/tty51  /dev/tty62
     /dev/tty0   /dev/tty2   /dev/tty30  /dev/tty41  /dev/tty52  /dev/tty63
     /dev/tty1   /dev/tty20  /dev/tty31  /dev/tty42  /dev/tty53  /dev/tty7
@@ -56,7 +56,7 @@ Running ``dmesg | grep tty``
 
 .. code-block:: console
 
-    joshua@batterypi:/opt/solarthing/program/custom_rover $ dmesg | grep tty
+    pi@raspberrypi:/opt/solarthing/program/custom_rover $ dmesg | grep tty
     [    0.000000] Kernel command line: coherent_pool=1M 8250.nr_uarts=1 snd_bcm2835.enable_compat_alsa=0 snd_bcm2835.enable_hdmi=1 bcm2708_fb.fbwidth=656 bcm2708_fb.fbheight=416 bcm2708_fb.fbswap=1 vc_mem.mem_base=0x3ec00000 vc_mem.mem_size=0x40000000  console=ttyAMA0,115200 console=tty1 root=PARTUUID=74d263f2-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait
     [    0.001171] printk: console [tty1] enabled
     [    3.154007] 3f201000.serial: ttyAMA0 at MMIO 0x3f201000 (irq = 114, base_baud = 0) is a PL011 rev2
