@@ -78,6 +78,11 @@ If you have many running SolarThing instances, it makes sense to send all of the
 Graylog is an application to do just that. I recommend installing this in the same place you have CouchDB installed
 (which should be a device that is OK to have lots of disk activity).
 
+.. note::
+
+  You can find more official documentation here: https://go2docs.graylog.org/4-x/downloading_and_installing_graylog/docker.html.
+  However, I find that the documentation does not do a good job of describing what file permisisons each container can or cannot have.
+
 .. code-block:: shell
 
     cd /opt/containers
@@ -167,6 +172,11 @@ Edit ``docker-compose.yml`` in the ``graylog`` directory and paste these content
     #networks: # only uncomment this if you specify $DOCKER_MY_NETWORK in .env file
     #  default:
     #    name: $DOCKER_MY_NETWORK
+
+.. note:: 
+
+  The versions of the docker containers above were specifically chosen to work with the 4.X releases:
+  https://go2docs.graylog.org/4-x/downloading_and_installing_graylog/installing_graylog.html
 
 Now navigate to the IP and port you specified in your docker compose in your web browser.
 You should see Graylog appear. You can login with admin/admin or admin/your_password_you_set assuming you changed it from the default.

@@ -21,6 +21,7 @@ Typically one would just disable password authentication completely, but I prefe
 Edit ``/etc/ssh/sshd_config`` and add this at the bottom:
 
 .. code-block::
+
     PasswordAuthentication no
     Match Address 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
       PasswordAuthentication yes
@@ -28,6 +29,7 @@ Edit ``/etc/ssh/sshd_config`` and add this at the bottom:
 You can also install ``fail2ban`` on your system to automatically block spammers who attempt to login many times.
 
 .. code-block:: sh
+    
     sudo apt-get install -y fail2ban
     cd /etc/fail2ban
     cp jail.conf jail.local
@@ -88,6 +90,7 @@ A simpler method can be to edit ``/etc/hosts.deny`` if you don't want to install
 iptables update to apply to docker containers.
 
 .. code-block::
+
     ALL : 91.212.166.22
     # You can add more from above
 
