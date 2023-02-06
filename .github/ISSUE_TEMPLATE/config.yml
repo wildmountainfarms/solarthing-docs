@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: SolarThing Issues
+    url: https://github.com/wildmountainfarms/solarthing/issues/new/choose
+    about: Use this to report issues relating to SolarThing or to ask for general support. This is also preferred when asking general questions or asking a specific question about documentation.
