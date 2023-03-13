@@ -113,24 +113,18 @@ Edit ``docker-compose.yml`` in the ``graylog`` directory and paste these content
     services:
       # MongoDB: https://hub.docker.com/_/mongo/
       mongo:
-        image: mongo:4.2
-        volumes:
-          - ./mongo_data:/data/db
-        user: "2000:2000"
+        image: mongo:5.0.13
+        networks:
+          - graylog
         restart: unless-stopped
       # Elasticsearch: https://www.elastic.co/guide/en/elasticsearch/reference/7.10/docker.html
       elasticsearch:
         image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
-        volumes:
-          - ./es_data:/usr/share/elasticsearch/data
-        #user: "2000:2000" Specifying user does not work
         environment:
           - http.host=0.0.0.0
           - transport.host=localhost
           - network.host=0.0.0.0
           - "ES_JAVA_OPTS=-Dlog4j2.formatMsgNoLookups=true -Xms512m -Xmx512m"
-          #- "ES_JAVA_OPTS=-Dlog4j2.formatMsgNoLookups=true -Xms512m -Xmx512m -XX:+UseG1GC"
-        restart: unless-stopped
         ulimits:
           memlock:
             soft: -1
@@ -139,27 +133,27 @@ Edit ``docker-compose.yml`` in the ``graylog`` directory and paste these content
           resources:
             limits:
               memory: 1g
+        networks:
+          - graylog
       # Graylog: https://hub.docker.com/r/graylog/graylog/
       graylog:
-        image: graylog/graylog:4.3
-        container_name: graylog
-        volumes:
-          - ./graylog_data:/usr/share/graylog/data
+        image: graylog/graylog:5.0
         environment:
-          # CHANGE ME (must be at least 16 characters)! https://docs.graylog.org/docs/manual-setup password_secret. Generated using pwgen
-          - GRAYLOG_PASSWORD_SECRET=forpasswordencryption
+          # CHANGE ME (must be at least 16 characters)!
+          - GRAYLOG_PASSWORD_SECRET=somepasswordpepper
           # Password: admin
           - GRAYLOG_ROOT_PASSWORD_SHA2=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
-          #- GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:9000/
-          - GRAYLOG_HTTP_EXTERNAL_URI=http://192.168.10.251:9100/
+          - GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:9000/
         entrypoint: /usr/bin/tini -- wait-for-it elasticsearch:9200 --  /docker-entrypoint.sh
-        restart: unless-stopped
+        networks:
+          - graylog
+        restart: always
         depends_on:
           - mongo
           - elasticsearch
         ports:
           # Graylog web interface and REST API
-          - 9100:9000
+          - 9000:9000
           # Syslog TCP
           - 1514:1514
           # Syslog UDP
@@ -168,10 +162,13 @@ Edit ``docker-compose.yml`` in the ``graylog`` directory and paste these content
           - 12201:12201
           # GELF UDP
           - 12201:12201/udp
+    networks:
+      graylog:
+        driver: bridge
 
-    #networks: # only uncomment this if you specify $DOCKER_MY_NETWORK in .env file
-    #  default:
-    #    name: $DOCKER_MY_NETWORK
+      #networks: # only uncomment this if you specify $DOCKER_MY_NETWORK in .env file
+      #  default:
+      #    name: $DOCKER_MY_NETWORK
 
 .. note:: 
 
