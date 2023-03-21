@@ -50,6 +50,7 @@ Contents
    :maxdepth: 1
    :caption: More Configuration
 
+   actions/index
    config/rpi-cpu-temp
    config/w1-temperature
    config/analytics

@@ -3,6 +3,9 @@ Install Java
 
 So you need to install Java to your system?
 
+* https://pi4j.com/documentation/java-installation/
+* https://forums.raspberrypi.com//viewtopic.php?p=1308846
+
 
 Required Version
 ----------------

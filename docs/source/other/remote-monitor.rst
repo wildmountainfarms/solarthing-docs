@@ -5,7 +5,7 @@ There are many ways to remotely monitor your system. This page demonstrates how 
 your system if you cannot port forward on your router or ISP.
 
 Use SSH Port Forward Client to make your device available for remote monitoring
---------------------------
+--------------------------------------------------------------------------------
 
 If you cannot directly port forward port 22 on your device, but have another device (on another network) that you can port forward on,
 you can use an ssh port forward client to make port 22 available through the other device.
@@ -61,7 +61,7 @@ The ``cat id_rsa.pub`` command gives some output that you will need later. Copy 
 Now go ahead and start this service using ``sudo docker compose up -d``.
 
 Setting up the SSH Forward Server
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This sub-section assumes that you need a separate SSH server. This section is usually optional because most people
 are already running SSHD server daemon on the device that is able to port forward. In the case you want to use that, ignore this section
@@ -82,7 +82,7 @@ Install docker on this machine just like you did on your client machine.
     cd ssh-forward-server
     touch sshkey.pub  # this is basically the same as your authorized_keys file
 
-Edit ``docker-compose.yml`` in the ``ssh-forward-client`` directory and paste these contents into it:
+Edit ``docker-compose.yml`` in the ``ssh-forward-server`` directory and paste these contents into it:
 
 .. code-block:: yaml
 
@@ -103,6 +103,21 @@ Edit ``docker-compose.yml`` in the ``ssh-forward-client`` directory and paste th
 
 Now take the text from the public key in the last second, and paste it into the ``sshkey.pub`` you created.
 You can now use ``docker compose up -d`` to start this server. The port 9025 on this device should forward all traffic to port 22 on your client device!
+
+Updated Way of setting up SSH Forward Server
+-------------------------------------------------
+
+.. code-block:: shell 
+
+    # Install docker like the above section showed
+
+    # confirm installed with compose:
+    docker compose version
+
+    cd /opt/containers/
+    mkdir ssh-forward-server
+    cd ssh-forward-server
+    touch sshkey.pub  # this is basically the same as your authorized_keys file
 
 Forward an entire network
 -----------------------------

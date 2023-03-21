@@ -6,7 +6,7 @@ SolarThing supports multiple ways to export and upload data along with multiple 
 CouchDB
 -------
 Using CouchDB allows for the most features. Used by SolarThing Android. Required for the ``automation`` and ``pvoutput`` programs.
-Used alongside SolarThing GraphQL to get data into Grafana.
+Used alongside SolarThing Server to get data into Grafana.
 
 
 InfluxDB

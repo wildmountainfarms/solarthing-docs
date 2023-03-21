@@ -1,7 +1,7 @@
 GraphQL and Grafana
 ====================
 
-If you have a CouchDB database, using SolarThing GraphQL is a great way to expose data to be used with https://github.com/fifemon/graphql-datasource.
+If you have a CouchDB database, using SolarThing Server is a great way to expose data to be used with https://github.com/fifemon/graphql-datasource.
 
 .. note:: 
 

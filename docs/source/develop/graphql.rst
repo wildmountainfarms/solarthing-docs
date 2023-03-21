@@ -1,9 +1,8 @@
-SolarThing GraphQL Queries and Mutations
-=========================================
+SolarThing Server GraphQL Queries and Mutations
+================================================
 
-In SolarThing there is a whole package dedicated to defining GraphQL endpoints
-for the SolarThing GraphQL (AKA SolarThing Server) here:
-:tree:`master/graphql/src/main/java/me/retrodaredevil/solarthing/rest/graphql/service`
+In SolarThing there is a whole package dedicated to defining GraphQL endpoints for the SolarThing Server here:
+:tree:`master/server/src/main/java/me/retrodaredevil/solarthing/rest/graphql/service`
 
 The ``/graphql`` endpoint is used to make GraphQL requests. There are many different possible queries to choose from.
 The structure of many of the queries are designed in such a way to make them easily useable with `graphql-datasource <https://github.com/fifemon/graphql-datasource>`.

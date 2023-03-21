@@ -10,6 +10,8 @@ If you notice an update, run these commands to get it:
     cd /opt/solarthing
     git pull
     program/download_solarthing.sh
+    # Or instead use this if you are running SolarThing Server
+    program/graphql_download_solarthing.sh
 
 Once you have done that, you can restart SolarThing. One would typically restart SolarThing like so:
 

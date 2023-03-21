@@ -66,11 +66,11 @@ Now you must install the ``web`` module's dependencies before being able to comp
     npm install
     cd ../
 
-You can now compile SolarThing GraphQL (AKA SolarThing Server):
+You can now compile SolarThing Server:
 
 .. code-block:: shell
 
-    ./graphql_compile_and_move.sh
+    ./server_compile_and_move.sh
 
 .. note::
 
@@ -78,18 +78,18 @@ You can now compile SolarThing GraphQL (AKA SolarThing Server):
     If you don't, you may get an error such as ``> A problem occurred starting process 'command 'npm''``, which indicates
     that gradle cannot find the ``npm`` command.
 
-Running SolarThing GraphQL (AKA SolarThing Server) from IntelliJ
+Running SolarThing Server from IntelliJ
 ---------------------------------------------------------------------------------
 
 Once the above steps are completed, it is typically easier to run straight from IntelliJ, rather
-than running the jar file that is generated using ``./graphql_compile_and_move.sh``. 
+than running the jar file that is generated using ``./server_compile_and_move.sh``. 
 You can do this by going to the right side of IntelliJ and opening up the Gradle tab.
-Under the ``graphql`` module, expand ``Tasks``, expand ``application``, then double click ``bootRun``.
+Under the ``server`` module, expand ``Tasks``, expand ``application``, then double click ``bootRun``.
 
-Configuring SolarThing GraphQL (AKA SolarThing Server)
+Configuring SolarThing Server
 --------------------------------------------------------
 
-No matter how you run Solarthing GraphQL, you must configure it. You might have a ``couchdb.json`` file already created.
+No matter how you run Solarthing Server, you must configure it. You might have a ``couchdb.json`` file already created.
 If you don't already have that file placed in ``program/config``, you can place it there.
 Then, create a new file in ``program/graphql/config`` named ``application.properties``. Paste this line in:
 
@@ -97,7 +97,7 @@ Then, create a new file in ``program/graphql/config`` named ``application.proper
 
     solarthing.config.database=../config/couchdb.json
 
-You should now be able to run SolarThing GraphQL without errors by running the ``bootRun`` task.
+You should now be able to run SolarThing Server without errors by running the ``bootRun`` task.
 Navigate to http://localhost:8080 to see if it successfully connects to your CouchDB instance and shows some data.
 
 Testing the Main SolarThing Program
