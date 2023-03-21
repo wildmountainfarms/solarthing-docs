@@ -312,18 +312,18 @@ Cache Logic
 -------------
 
 The actual logic for generating caches and storing them in the database is present here: 
-:blob:`master/graphql/src/main/me/retrodaredevil/solarthing/rest/cache/CacheHandler.java`
+:blob:`master/server/src/main/me/retrodaredevil/solarthing/rest/cache/CacheHandler.java`
 
 Usages of caches
 --------------------
 
 Currently, the SolarThing Server program exposes a REST API for querying cache data, which then will call
 methods provided by ``CacheHandler``. You can see this here: 
-:blob:`master/graphql/src/main/me/retrodaredevil/solarthing/rest/cache/CacheController.java`
+:blob:`master/server/src/main/me/retrodaredevil/solarthing/rest/cache/CacheController.java`
 
 Currently, nothing actually uses that REST endpoint, but there are usages of ``CacheController`` in some of the GraphQL queries.
 Typically, a GraphQL query that needs to use cache data will be provided a ``CacheController`` object. You can see an example here:
-:blob:`master/graphql/src/main/me/retrodaredevil/solarthing/rest/graphql/service/SolarThingGraphQLLongTermService.java`
+:blob:`master/server/src/main/me/retrodaredevil/solarthing/rest/graphql/service/SolarThingGraphQLLongTermService.java`
 
 Creating your own cache
 -------------------------
@@ -348,7 +348,7 @@ This should implement ``IdentificationCacheNodeCreator<CheeseSandwichDataCache, 
 Note that you can replace ``CheeseSandwichStatusPacket`` with whatever type of class that you need to use to generate data.
 Note that class must implement the ``Identifiable`` interface AND, the identifier returned must be serializabe and deserializable to and from JSON.
 Please make sure you check to make sure that the type of identifiable used by that class is present in the ``@JsonSubTypes`` in the ``Identifier`` interface.
-You can see an example here: :blob:`master/graphql/src/main/java/me/retrodaredevil/solarthing/rest/cache/creators/BatteryRecordCacheNodeCreator.java`.
+You can see an example here: :blob:`master/server/src/main/java/me/retrodaredevil/solarthing/rest/cache/creators/BatteryRecordCacheNodeCreator.java`.
 
 Now that you have your class created, it's time to implement the required methods. The ``getAcceptedType()`` method can return
 the class of what you replaced ``CheeseSandwichStatusPacket`` with. ``getCacheName()`` returns ``CheeseSandwichDataCache.CACHE_NAME``.
