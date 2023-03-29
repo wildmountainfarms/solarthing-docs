@@ -86,7 +86,9 @@ Notice that in the outer most block, there is only a single action: ``queue``.
 Inside of the ``queue`` action are other actions.
 As you see above, depending on the action, you can nest actions inside of actions to get the behavior you want.
 
-You can run this simple program using ``solarthing action file_name.ns``. The result is this:
+You can run this simple program using ``solarthing action file_name.ns``. 
+(Or docker: ``cat config_templates/actions-ns/simple_program.ns | docker run -i --rm ghcr.io/wildmountainfarms/solarthing action -``)
+The result is this:
 
 .. code-block::
 

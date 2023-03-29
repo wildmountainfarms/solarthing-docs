@@ -51,7 +51,8 @@ Contents
    :caption: More Configuration
 
    actions/index
-   config/rpi-cpu-temp
+   config/property-substitution
+   config/cpu-temperature
    config/w1-temperature
    config/analytics
    config/config-server
