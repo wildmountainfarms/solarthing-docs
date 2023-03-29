@@ -54,17 +54,17 @@ Let's assume the file ``hello.txt`` has the content ``Hello!`` (with no new line
 .. csv-table:: Available Substitutions
   :header: "Name", "Example", "Result"
 
-  "Environment", "${env:ASDF}", "Hello there!"
-  "System Property", "${sys:cool.text}", "Awesome!"
-  "System Property", "${sys:user.dir}", "/your/working/directory"
-  "Base64 Decoder", "${base64Encoder:SGVsbG9Xb3JsZCE=}", "HelloWorld!"
-  "Base64 Encoder", "${base64Encoder:HelloWorld!}", "SGVsbG9Xb3JsZCE="
-  "Date", "${date:yyyy-MM-dd}", "2023-03-28"
-  "Java", "${java:version}", "Java version 17.0.1"
-  "Localhost", "${localhost:canonical-name}", "raspberrypi"
-  "File content", "${file:UTF-8:hello.txt}", "Hello!"
-  "URL Decoder", "${urlDecoder:Hello%20World%21}", "Hello World!"
-  "URL Encoder", "${urlEncoder:Hello World!}", "Hello+World%21"
+  "Environment", "``${env:ASDF}``", "Hello there!"
+  "System Property", "``${sys:cool.text}``", "Awesome!"
+  "System Property", "``${sys:user.dir}``", "/your/working/directory"
+  "Base64 Decoder", "``${base64Encoder:SGVsbG9Xb3JsZCE=}``", "HelloWorld!"
+  "Base64 Encoder", "``${base64Encoder:HelloWorld!}``", "SGVsbG9Xb3JsZCE="
+  "Date", "``${date:yyyy-MM-dd}``", "2023-03-28"
+  "Java", "``${java:version}``", "Java version 17.0.1"
+  "Localhost", "``${localhost:canonical-name}``", "raspberrypi"
+  "File content", "``${file:UTF-8:hello.txt}``", "Hello!"
+  "URL Decoder", "``${urlDecoder:Hello%20World%21}``", "Hello World!"
+  "URL Encoder", "``${urlEncoder:Hello World!}``", "Hello+World%21"
 
 
 .. _log4j:

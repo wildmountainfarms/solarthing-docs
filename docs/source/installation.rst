@@ -9,17 +9,19 @@ Installing
 -----------
 
 Run these commands to install SolarThing. The script will install to ``/opt/solarthing`` and will create a new ``solarthing`` user.
+The script will also modify the root user's ``.gitconfig``.
 
 
 .. code-block:: shell
 
     curl https://raw.githubusercontent.com/wildmountainfarms/solarthing/master/other/linux/clone_install.sh | sudo bash
     sudo usermod -a -G solarthing,dialout,tty,video $USER
+    git config --global --add safe.directory /opt/solarthing
 
 .. note::
 
     If you do not have ``curl`` installed, you can instead use ``wget -O - https://raw.githubusercontent.com/wildmountainfarms/solarthing/master/other/linux/clone_install.sh | sudo bash``.
-    Make sure to also run the ``usermod`` command above.
+    Make sure to also run the other commands shown above.
 
 .. note::
 
@@ -84,7 +86,7 @@ Now that you have the ``solarthing`` command in your ``PATH``. Run
 
     solarthing version
 
-You should get output such as 
+You should get output such as
 
 .. code-block:: console
 
