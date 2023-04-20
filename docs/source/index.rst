@@ -59,12 +59,13 @@ Contents
    tracer/clock
    config/commands
    rover/bulk-request
+   docker/index
 
 
 .. toctree::
    :maxdepth: 1
    :caption: Other
-   
+
    other/install-java
    other/install-couchdb
    other/install-influxdb

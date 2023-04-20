@@ -25,7 +25,7 @@ You can see the directory containing the queries here:
 
 You will notice that all of the queries are named, and many of them take in query variables. Each query can be tested to be
 correct against the schema, and each query has its own function automatically generated for it.
-At the low level, some ``npm`` command is run to generate code based on these queries. 
+At the low level, some ``npm`` command is run to generate code based on these queries.
 For our purposes, all we need to know is that running ``./gradlew web:generateCode`` will generate the code for us.
 When running that, it will also generate the GraphQL schema for us so it knows that our queries are correct,
 and so that it can provide the generated code with rich type information, which is very important because
@@ -38,4 +38,10 @@ Much of the time, the use of a query will look like this:
 .. code-block:: typescript
 
     const {data, error, isLoading, isSuccess} = useHomeQuery(graphQLClient, { sourceId, currentTimeMillis: "" + timeMillisRounded});
+
+
+Testing GraphQL Endpoint on Command Line
+------------------------------------------
+
+https://github.com/Urigo/graphql-cli
 
