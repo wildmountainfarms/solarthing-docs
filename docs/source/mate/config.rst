@@ -25,7 +25,7 @@ Paste this into the file:
       "fragment": 1,
       "unique": 60,
       "databases": [ ],
-      "io": "confif/mate_serial.json"
+      "io": "config/mate_serial.json"
     }
 
 Save the file. Now we need to create another file:
