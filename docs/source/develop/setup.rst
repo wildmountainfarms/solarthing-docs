@@ -7,7 +7,7 @@ to make its installation and updating easier: https://www.jetbrains.com/toolbox-
 
 When compiling the majority of SolarThing, the only thing that is required is Java 11 or higher to be installed.
 Installing Java on your developer machine is the same as installing it on the machine that is running SolarThing.
-You can go here to learn how to install it: doc:`../other/install-java`. 
+You can go here to learn how to install it: doc:`/software/java`.
 Alternatively, you can use SDKMAN to install Java only for developing SolarThing: https://sdkman.io/install.
 
 Cloning SolarThing
@@ -82,7 +82,7 @@ Running SolarThing Server from IntelliJ
 ---------------------------------------------------------------------------------
 
 Once the above steps are completed, it is typically easier to run straight from IntelliJ, rather
-than running the jar file that is generated using ``./server_compile_and_move.sh``. 
+than running the jar file that is generated using ``./server_compile_and_move.sh``.
 You can do this by going to the right side of IntelliJ and opening up the Gradle tab.
 Under the ``server`` module, expand ``Tasks``, expand ``application``, then double click ``bootRun``.
 

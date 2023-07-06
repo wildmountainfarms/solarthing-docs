@@ -8,5 +8,6 @@ This contains documentation for contributing to SolarThing.
    :caption: Development
 
    setup
+   couchdb
    cache
    graphql

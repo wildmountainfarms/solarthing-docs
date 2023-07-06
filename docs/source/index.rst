@@ -11,9 +11,9 @@ The primary purpose of SolarThing is to get data and upload it to a database. Us
 experience, but InfluxDB can also be used. CouchDB can run on Raspberry Pis >= 3, but using a separate computer or server for
 CouchDB is recommended.
 
-To install, checkout :doc:`installation`.
+To install, checkout :doc:`quickstart/installation`.
 
-If you do not have your Raspberry Pi setup yet, you can instead start at :doc:`other/headless-rpi`.
+If you do not have your Raspberry Pi setup yet, you can instead start at :doc:`setup/headless-rpi`.
 
 
 Contents
@@ -23,55 +23,47 @@ Contents
    :maxdepth: 1
    :caption: Quickstart
 
-   installation
-   serial-ports
-   solarthing-check
-   configuration
-   view-data
+   quickstart/installation
+   quickstart/serial-port/index
+   quickstart/config/index
+   quickstart/data/index
 
 
 .. toctree::
    :maxdepth: 1
    :caption: About
 
-   supported-products
-   database-and-display
-   faq
+   about/index
 
 .. toctree::
    :maxdepth: 1
    :caption: Maintaining SolarThing
 
    updating
-   logging
+   logging/index
    stability
 
 .. toctree::
    :maxdepth: 1
-   :caption: More Configuration
+   :caption: Configuration
 
-   actions/index
    config/property-substitution
-   config/cpu-temperature
-   config/w1-temperature
+   actions/index
+   config/base-json/index
+   config/database/index
    config/analytics
    config/config-server
-   tracer/clock
-   config/commands
-   rover/bulk-request
+   config/commands/index
    docker/index
+   legacy/index
 
 
 .. toctree::
    :maxdepth: 1
    :caption: Other
 
-   other/install-java
-   other/install-couchdb
-   other/install-influxdb
-   other/headless-rpi
-   other/headless-odroid
-   other/headless-armbian
+   software/index
+   setup/index
    other/remote-monitor
    other/security
    develop/index
