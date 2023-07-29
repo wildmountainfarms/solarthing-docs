@@ -1,5 +1,9 @@
-Databases
-==========
+Database Config
+================
+
+.. seealso::
+
+  For detailed information, see :doc:`/config/file/database/index`.
 
 .. toctree::
    :maxdepth: 1

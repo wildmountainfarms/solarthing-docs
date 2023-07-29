@@ -1,71 +1,88 @@
-Welcome to SolarThing's documentation!
-======================================
+SolarThing
+============
 
 **SolarThing** is an application that can monitor data from a variety of solar charge controllers and inverters.
+SolarThing supports running in Docker and also supports a native install.
 Code and issues available at https://github.com/wildmountainfarms/solarthing.
 
-This documentation is targetted at people who have Raspberry Pis or any Debian based operating system.
+To jump to installation, go to :doc:`quickstart/install/index`.
+
+About
+------
+
+SolarThing is fully configurable.
+Create a JSON configuration file to configure how and where data from your charge controller goes!
+Once configured, charge controller data is continuously uploaded to a database for viewing in Grafana, or your choice of data visualization.
+
+|pic_grafana| |pic_android|
+
+.. |pic_grafana| image:: /images/2023-07-25-wmf_grafana_dashboard.png
+  :width: 70%
+  :alt: Screenshot of Grafana Dashboard for Wild Mountain Farms Taken around 21:00 CDT on July 25, 2023
+
+.. |pic_android| image:: /images/2023-07-25-solarthing_android_notification.jpeg
+  :width: 25%
+  :alt: Screenshot of the SolarThing Android notification for Wild Mountain Farms Taken around 21:00 CDT on July 25, 2023
+
+SolarThing allows you to monitor your battery voltage, incoming solar power, and power usage.
+Each datapoint can be graphed over time. Grafana allows you to view historical data and current data.
+SolarThing also supports 1-Wire temperature sensors, so you can record the indoor or outdoor temperatures.
+With more advanced configurations of SolarThing, it can be used as an automation system.
+
+SolarThing supports Outback MATE 1 and 2, Renogy Rover and similar devices, EPEver Tracer charge controllers.
+For more information, check out :doc:`about/supported-products`.
+
+This Documentation
+-------------------
+
+This documentation is targeted at people who have Raspberry Pis or any Debian based operating system.
 However, SolarThing can run on any OS.
 
 The primary purpose of SolarThing is to get data and upload it to a database. Using CouchDB allows for the best SolarThing
 experience, but InfluxDB can also be used. CouchDB can run on Raspberry Pis >= 3, but using a separate computer or server for
 CouchDB is recommended.
 
-To install, checkout :doc:`quickstart/installation`.
+Getting Started
+-----------------
+
+To install, checkout :doc:`quickstart/install/index`.
 
 If you do not have your Raspberry Pi setup yet, you can instead start at :doc:`setup/headless-rpi`.
-
 
 Contents
 --------
 
 .. toctree::
-   :maxdepth: 1
+  :maxdepth: 1
+  :caption: About
+
+  about/supported-products
+  about/database-and-display
+  about/faq
+
+.. toctree::
+   :maxdepth: 3
    :caption: Quickstart
 
-   quickstart/installation
+   quickstart/install/index
    quickstart/serial-port/index
    quickstart/config/index
    quickstart/data/index
 
-
 .. toctree::
-   :maxdepth: 1
-   :caption: About
+   :maxdepth: 3
+   :caption: Documentation
 
-   about/index
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Maintaining SolarThing
-
-   updating
-   logging/index
-   stability
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Configuration
-
-   config/property-substitution
-   actions/index
-   config/base-json/index
-   config/database/index
-   config/analytics
-   config/config-server
-   config/commands/index
-   docker/index
-   legacy/index
-
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Other
-
+   config/index
+   maintenance/index
    software/index
    setup/index
-   other/remote-monitor
-   other/security
    develop/index
+   misc/index
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Links
+
    GitHub <https://github.com/wildmountainfarms/solarthing>
    Report an Issue <https://github.com/wildmountainfarms/solarthing/issues>

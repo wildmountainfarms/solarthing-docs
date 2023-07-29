@@ -3,16 +3,62 @@ PVOutput Uploader
 
 If you have a CouchDB database, you can create a system on https://pvoutput.org and upload your output data.
 
-
 .. note:: CouchDB is the only database that the PVOutput program works with
 
-Now we'll change our directory to the pvoutput config directory and start editing its config:
+.. note::
+
+   It is recommended to configure SolarThing PVOutput on the same device as the CouchDB database. If this device is different than the one
+   you installed SolarThing on, you can install SolarThing on this device too, just skip to this configuration after installing.
+
+Setting up
+-------------
+
+Now we'll change our directory to the pvoutput directory and start editing its config:
+
+.. tabs::
+
+  .. group-tab:: Docker Install
+
+    Before we begin, setup a directory (or use part of an existing directory) to contain pvoutput configuration.
+
+    .. code-block:: shell
+
+      mkdir ~/Documents/solarthing-config/pvoutput/{config,logs}
+      cd ~/Documents/solarthing-config/
+      nano docker-compose.yml
+
+    You should now be editing ``docker-compose.yml``.
+    If it is the case that you already have a docker-compose file, you may append to it.
+    If you do not already have this file, you may paste the contents below exactly as is:
+
+    .. code-block:: yaml
+
+      version: '3.7'
+
+      services:
+        solarthing-pvoutput:
+          image: 'ghcr.io/wildmountainfarms/solarthing:latest'
+          container_name: solarthing-pvoutput
+          restart: 'unless-stopped'
+          command: run --base config/base.json
+          volumes:
+            - './pvoutput/config:/app/config:ro'
+            - './pvoutput/logs:/app/logs'
+
+    Now let's edit ``base.json``:
+
+    .. code-block:: shell
+
+      nano pvoutput/config/base.json
 
 
-.. code-block:: shell
+  .. code-tab:: shell Native Install
 
-    cd /opt/solarthing/program/pvoutput/config
-    nano base.json
+    cd /opt/solarthing/program/pvoutput
+    nano config/base.json
+
+``base.json``
+-------------
 
 Paste this into your ``base.json`` file:
 
@@ -26,41 +72,54 @@ Paste this into your ``base.json`` file:
       "source": "default"
     }
 
-This assumes you have a ``couchdb.json`` file located in ``/opt/solarthing/program/pvoutput/config/couchdb.json``. 
-If you do not, either change the path or create a new ``couchdb.json`` file to put in that location.
+.. note::
+
+  Make sure the ``couchdb.json`` file you refer to exists in a location that is accessible to SolarThing via the path you provide.
 
 In the above example, ``100`` is the system id. You should replace this with whatever your system id is.
 
 Replace ``<YOUR API KEY>`` with your API key.
 
-Now let's cd up a directory and run it:
+Now let's run it:
 
-.. code-block:: shell
+.. tabs::
 
-    cd /opt/solarthing/program/graphql
-    # OR
+  .. code-tab:: shell Docker Install
+
     cd ..
+    sudo docker compose up
+
+  .. code-tab:: shell Native Install
 
     # Now run it:
     sudo -u solarthing ./run.sh
 
 You should see a bunch of log messages. Some of the log messages should indicate success in uploading to PVOutput.
 
-
-
-Installing and starting systemd service
+Running in background
 ----------------------------------------
 
-Let's go ahead and install the systemd service, start it, then enable it so it starts across reboots:
+.. tabs::
 
+  .. group-tab:: Docker Install
 
-.. code-block:: shell
+    Running any docker container in the background is trivial with docker compose:
 
-    sudo /opt/solarthing/other/systemd/install.sh pvoutput
-    sudo systemctl start solarthing-pvoutput
-    sudo systemctl enable solarthing-pvoutput
+    .. code-block:: shell
 
-Run ``systemctl status solarthing-pvoutput`` to make sure it is running. 
+      sudo docker compose up -d
 
-Now you're done! Navigate to your system on PVOutput and you should see one data point. 
+  .. group-tab:: Native Install
+
+    Let's go ahead and install the systemd service, start it, then enable it so it starts across reboots:
+
+    .. code-block:: shell
+
+        sudo /opt/solarthing/other/systemd/install.sh pvoutput
+        sudo systemctl start solarthing-pvoutput
+        sudo systemctl enable solarthing-pvoutput
+
+    Run ``systemctl status solarthing-pvoutput`` to make sure it is running.
+
+Now you're done! Navigate to your system on PVOutput and you should see one data point.
 SolarThing will upload every 5 minutes, so after some time it'll be a cool graph!

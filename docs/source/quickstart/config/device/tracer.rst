@@ -3,16 +3,19 @@ Tracer Configuration
 
 Documentation for configuration SolarThing to monitor a Tracer.
 
-.. note:: This documentation is almost the same as :doc:`rover`. In the future, maybe we can change this to not be copy pasted
-
-
 First, run these commands:
 
-.. code-block:: shell
+.. tabs::
+
+  .. code-tab:: shell Docker Install
+
+    cd <your directory that contains docker-compose.yml>/<tracer or main or whatever you called it>
+
+  .. code-tab:: shell Native Install
 
     cd /opt/solarthing/program/
     ./create_custom.sh custom_tracer
-    cd custom_tracer/config
+    cd custom_tracer/
 
 That command will create a directory for you to put your configuration in. You may notice there are other directories in ``/opt/solarthing/program``.
 In previous SolarThing versions, those were the recommended directories to place configuration files. This is no longer the case.
@@ -31,24 +34,27 @@ You can now paste this into the file:
 
 .. code-block:: json
 
-    {
-      "type": "request",
-      "source": "default",
-      "fragment": 5,
-      "unique": 30,
-      "databases": [ ],
-      "request": [
-        {
-          "type": "modbus",
-          "io": "config/tracer_serial.json",
-          "devices": {
-            "1": {
-              "type": "tracer"
-            }
+  {
+    "type": "request",
+    "source": "default",
+    "fragment": 5,
+    "unique": 30,
+    "databases_config": {
+      "databases": [
+      ]
+    },
+    "request": [
+      {
+        "type": "modbus",
+        "io": "config/tracer_serial.json",
+        "devices": {
+          "1": {
+            "type": "tracer"
           }
         }
-      ]
-    }
+      }
+    ]
+  }
 
 
 We will go over what all of this configuration means later, but for now let's focus on ``"1"``. That represents the address of the modbus device.
@@ -59,7 +65,7 @@ Save the file. Now we need to create another file:
 
 .. code-block:: shell
 
-    nano tracer_serial.json
+  nano tracer_serial.json
 
 You'll notice it has the same name as the ``"io"`` property in ``base.json``. We are now configuring the path to the serial port.
 
@@ -74,14 +80,5 @@ You can paste this into the file:
     }
 
 Depending on the path to your serial port, you may need to change ``"/dev/ttyUSB0"`` to something different.
-
-Now change your directory to continue to test your new configuration:
-
-.. code-block:: shell
-
-    cd ..
-    # OR
-    cd /opt/solarthing/program/custom_rover/
-
 
 Go to :doc:`../configuration-running`.

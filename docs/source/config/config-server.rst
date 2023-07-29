@@ -1,5 +1,5 @@
-Configuration Server
-=====================
+Rover/Tracer Config Server
+=================================
 
 The rover and tracer programs have the ability to host a small server that can be accessed using a tool such as netcat (``nc``).
 These servers are by default bound to ``localhost``, so only those on the device itself can access it.
@@ -12,48 +12,54 @@ Let's assume you had a config like this:
 
 .. code-block:: json
 
-    {
-      "type": "request",
-      "source": "default",
-      "fragment": 2,
-      "unique": 30,
-      "databases": [ ],
-      "request": [
-        {
-          "type": "modbus",
-          "io": "config/rover_serial.json",
-          "devices": {
-            "1": {
-              "type": "rover"
-            }
+  {
+    "type": "request",
+    "source": "default",
+    "fragment": 2,
+    "unique": 30,
+    "databases_config": {
+      "databases": [
+      ]
+    },
+    "request": [
+      {
+        "type": "modbus",
+        "io": "config/rover_serial.json",
+        "devices": {
+          "1": {
+            "type": "rover"
           }
         }
-      ]
-    }
+      }
+    ]
+  }
 
 You can simply change it to:
 
 .. code-block:: json
 
-    {
-      "type": "request",
-      "source": "default",
-      "fragment": 2,
-      "unique": 30,
-      "databases": [ ],
-      "request": [
-        {
-          "type": "modbus",
-          "io": "config/rover_serial.json",
-          "devices": {
-            "1": {
-              "type": "rover",
-              "server": { "port": 5051 }
-            }
+  {
+    "type": "request",
+    "source": "default",
+    "fragment": 2,
+    "unique": 30,
+    "databases_config": {
+      "databases": [
+      ]
+    },
+    "request": [
+      {
+        "type": "modbus",
+        "io": "config/rover_serial.json",
+        "devices": {
+          "1": {
+            "type": "rover",
+            "server": { "port": 5051 }
           }
         }
-      ]
-    }
+      }
+    ]
+  }
 
 The above configuration will create a server that listens on port ``5051``.
 

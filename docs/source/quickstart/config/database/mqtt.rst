@@ -1,4 +1,4 @@
-Configuring MQTT Uploading
+MQTT Uploading
 ============================
 
 This will help you adjust your ``base.json`` so that SolarThing starts uploading to some MQTT broker.
@@ -18,19 +18,13 @@ Lets get into the config directory we need.
 
 .. code-block:: shell
 
-  cd /opt/solarthing/program/<THE DIRECTORY YOU USED IN PREVIOUS STEPS>/config
-
-OK, now our shell should look something like this (``custom_rover`` may be different):
-
-.. code-block:: console
-
-  pi@raspberrypi:/opt/solarthing/program/custom_rover/config$
+  cd <THE DIRECTORY YOU USED IN PREVIOUS STEPS>
 
 And now we will create ``mqtt.json``
 
 .. code-block:: shell
 
-  nano mqtt.json
+  nano config/mqtt.json
 
 Paste this into your newly created file:
 

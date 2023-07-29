@@ -5,47 +5,51 @@ Edit ``base.json`` for a database
 
   See also :ref:`config-base-json-databases` if you need configuration documentation for older SolarThing versions.
 
-Now that your database of choice is fully set up and we have a ``<some database>.json`` configuration file, let's add it to our ``base.json``.
+Now that your database of choice is fully set up and we have a ``config/<some database>.json`` configuration file, let's add it to our ``base.json``.
 
 Start editing ``base.json``. Right now, it should look something like:
 
-.. code-block:: json5
+.. code-block:: json
 
-    {
-      //...
-      "databases_config": {
-        "databases": [
-        ]
-      }
-      //...
+  {
+    // ...
+    "databases_config": {
+      "databases": [
+      ]
     }
+    // ...
+  }
 
 Let's change it to look like this:
 
-.. code-block:: json5
+.. code-block:: json
 
-    {
-      //...
-      "databases_config": {
-        "databases": [
-          {
-            "external": "config/<some database>.json"
-          }
-        ]
-      }
-      //...
+  {
+    // ...
+    "databases_config": {
+      "databases": [
+        {
+          "external": "config/<some database>.json"
+        }
+      ]
     }
+    // ...
+  }
 
 Save the file. It is set up now!
-
-
 
 Run it again
 ==============
 
 Now that you have edited your ``base.json`` with a new database, give the program a run again:
 
-.. code-block:: shell
+.. tabs::
+
+  .. code-tab:: shell Docker Install
+
+    sudo docker compose up
+
+  .. code-tab:: shell Native Install
 
     sudo -u solarthing ./run.sh
 

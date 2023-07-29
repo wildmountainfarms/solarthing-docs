@@ -4,8 +4,8 @@ Supported Products
 SolarThing supports a wide variety of products. Each product requires a different configuration in SolarThing.
 
 
-Renogy Rover
-------------
+Renogy Rover Charge Controller
+---------------------------------
 
 * Renogy: Rover, Rover Elite, Rover Boost, Wanderer, Adventurer, Dual Input DCDC Charger
 * Compatible with all `SRNE Solar <https://www.srnesolar.com/>`_ Charge Controllers (And rebranded charge controllers)
@@ -20,8 +20,8 @@ Outback MATE
 * Allows monitoring of FX inverters and MX/FM Charge Controllers
 
 
-EPEver Tracer
--------------
+EPEver Tracer Charge Controller
+--------------------------------
 * Tracer AN series and TRIRON N series
 * Possibly includes the BN series
 
@@ -31,3 +31,10 @@ Other Products
 
 * DS18B20 Temperature Sensors
 * PZEM-003 and PZEM-017 Shunts
+
+Not Compatible With
+-------------------
+
+* Inverters that are not Outback Inverters
+
+  * This means that Renogy Inverters are not supported, even if those inverters have solar charge controller functionality.

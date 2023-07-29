@@ -18,9 +18,14 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
     'sphinx.ext.extlinks',
+    'sphinx.ext.todo',
     #'sphinxcontrib.globalsubs',
     'sphinx_reredirects', # https://documatt.gitlab.io/sphinx-reredirects/install.html
+    'sphinx_tabs.tabs', # https://pypi.org/project/sphinx-tabs/
+    'sphinx_search.extension', # https://pypi.org/project/readthedocs-sphinx-search/
 ]
+
+todo_include_todos=True
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
@@ -32,11 +37,12 @@ templates_path = ['_templates']
 
 # -- Options for HTML output
 
-html_theme = 'sphinx_rtd_theme'
+# html_theme = 'sphinx_rtd_theme'
+html_theme = 'furo'
 
-html_theme_options = {
-    'navigation_depth': 6,
-}
+#html_theme_options = {
+#}
+html_theme_options = dict()
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
@@ -60,12 +66,12 @@ redirects = {
     "database-and-display": "about/database-and-display.html",
     "faq": "about/faq.html",
     "supported-products": "about/supported-products.html",
-    "config/cpu-temperature": "../config/base-json/request/cpu-temperature.html",
-    "rover/bulk-request": "../config/base-json/request/modbus/rover/bulk-request.html",
-    "tracer/clock": "../config/base-json/request/modbus/tracer/clock.html",
-    "config/w1-temperature": "../config/base-json/request/w1-temperature.html",
+    "config/cpu-temperature": "../config/file/base-json/request/cpu-temperature.html",
+    "rover/bulk-request": "../config/file/base-json/request/modbus/rover/bulk-request.html",
+    "tracer/clock": "../config/file/base-json/request/modbus/tracer/clock.html",
+    "config/w1-temperature": "../config/file/base-json/request/w1-temperature.html",
     "config/commands": "../config/commands/index.html",
-    "config/rpi-cpu-temp": "../legacy/rpi-cpu-temp.html",
+    "config/rpi-cpu-temp": "../misc/legacy/rpi-cpu-temp.html",
     "logging": "logging/index.html",
     "configuration-continued": "quickstart/config/configuration-continued.html",
     "configuration-databases": "quickstart/config/configuration-databases.html",
@@ -83,7 +89,7 @@ redirects = {
     "view-data": "quickstart/data/index.html",
     "data/influxdb-grafana": "../quickstart/data/influxdb-grafana.html",
     "data/pvoutput": "../quickstart/data/pvoutput.html",
-    "installation": "quickstart/installation.html",
+    "installation": "quickstart/install/index.html",
     "mate/rs232-port": "../quickstart/serial-port/hardware/mate/rs232-port.html",
     "rover/rs232-port": "../quickstart/serial-port/hardware/rover/rs232-port.html",
     "rover/rs485-port": "../quickstart/serial-port/hardware/rover/rs485-port.html",
@@ -95,4 +101,16 @@ redirects = {
     "other/headless-rpi": "../setup/headless-rpi.html",
     "other/install-couchdb": "../software/couchdb.html",
     "other/install-influxdb": "../software/influxdb.html",
+
+    "quickstart/installation": "install/index.html",
+
+    "config/commands/index": "../../actions/commands.html",
+    "config/base-json/index": "../../config/file/base-json/index.html",
+    "config/base-json/request/cpu-temperature": "../../config/file/base-json/request/cpu-temperature.html",
+    "logging/index": "../maintenance/logging/graylog.html",
+    "other/remote-monitor": "../maintenance/remote-monitor.html",
+    "other/security": "../maintenance/security.html",
+    "stability": "maintenance/stability.html",
+    "legacy/index": "../misc/legacy/index.html",
+    "legacy/rpi-cpu-temp": "../misc/legacy/rpi-cpu-temp.html",
 }

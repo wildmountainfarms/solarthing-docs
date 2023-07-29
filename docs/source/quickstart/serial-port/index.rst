@@ -1,3 +1,5 @@
+.. _after-install:
+
 Serial Port Setup
 ==================
 

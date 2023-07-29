@@ -1,4 +1,4 @@
-Configuring CouchDB
+CouchDB
 ====================
 
 This will help you adjust your ``base.json`` so that SolarThing starts uploading to CouchDB.
@@ -16,46 +16,40 @@ Lets get into the config directory we need.
 
 .. code-block:: shell
 
-    cd /opt/solarthing/program/<THE DIRECTORY YOU USED IN PREVIOUS STEPS>/config
-
-OK, now our shell should look something like this (``custom_rover`` may be different):
-
-.. code-block:: console
-
-    pi@raspberrypi:/opt/solarthing/program/custom_rover/config$
+    cd <THE DIRECTORY YOU USED IN PREVIOUS STEPS>
 
 And now we will create ``couchdb.json``
 
 .. code-block:: shell
 
-    nano couchdb.json
+  nano config/couchdb.json
 
 Paste this into your newly created file:
 
 .. code-block:: json
 
-    {
-      "type": "couchdb",
-      "settings": {
-        "packet_upload": {
-          "throttle_factor": 3,
-          "initial_skip": 1
-        },
-        "command_download": {
-          "throttle_factor": 3,
-          "initial_skip": 4
-        }
+  {
+    "type": "couchdb",
+    "settings": {
+      "packet_upload": {
+        "throttle_factor": 3,
+        "initial_skip": 1
       },
-      "config": {
-        "protocol": "http",
-        "host": "localhost",
-        "port": 5984,
-        "username": "admin",
-        "password": "relax",
-        "connection_timeout": 1.5,
-        "call_timeout": 10
+      "command_download": {
+        "throttle_factor": 3,
+        "initial_skip": 4
       }
+    },
+    "config": {
+      "protocol": "http",
+      "host": "localhost",
+      "port": 5984,
+      "username": "admin",
+      "password": "relax",
+      "connection_timeout": 1.5,
+      "call_timeout": 10
     }
+  }
 
 OK, so the first part of that you can ignore for now, but the ``"config"`` part isn't too hard to understand.
 If you did not install CouchDB on this device, then you will likely have to change ``"host"`` to something different.
@@ -72,13 +66,16 @@ Now that you have a ``couchdb.json`` file, it's time to run the setup program.
 
 CD up one directory using ``cd ..``. The end result should be similar to below:
 
-.. code-block:: console
-
-    pi@raspberrypi:/opt/solarthing/program/custom_rover$
-
 Now let's run the setup program:
 
-.. code-block:: shell
+
+.. tabs::
+
+  .. code-tab:: shell Docker Install
+
+    sudo docker run -v ./config:/app/config ghcr.io/wildmountainfarms/solarthing run --couchdb-setup config/couchdb.json
+
+  .. code-tab:: shell Native Install
 
     solarthing run --couchdb-setup config/couchdb.json
 

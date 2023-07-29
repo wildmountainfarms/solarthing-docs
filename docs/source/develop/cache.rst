@@ -8,7 +8,7 @@ how it is currently used and how one can use it to cache data that may be expens
 Database Structure
 ---------------------
 
-Unlike other databases in SolarThing, ``solarthing_cache`` is not set up to be queried using a view. 
+Unlike other databases in SolarThing, ``solarthing_cache`` is not set up to be queried using a view.
 It must be queried using the ID of the document. The documents are named like so: ``cache_<time start>_<duration>_<source ID>_<cache name>``.
 
 Querying this data usually means making a `bulk get <https://docs.couchdb.org/en/stable/api/database/bulk-api.html?highlight=bulk#post--db-_bulk_get>`_ request.
@@ -18,7 +18,7 @@ Packet Structure
 
 Although there are many different cache types, all documents in the database share a common base structure.
 
-.. code-block:: json5
+.. code-block:: json
 
     {
       "_id": "cache_2021-06-23T20:30:00Z_PT15M_default_chargeControllerAccumulation",
@@ -88,7 +88,7 @@ An example ``data`` object looks like this:
       "unknownStartDateMillis": null
     }
 
-The data is pretty easy to understand, but there are some important things to know. 
+The data is pretty easy to understand, but there are some important things to know.
 You have an identifier object, which represents what device this data was generated from.
 
 You have a ``firstDateMillis`` and ``lastDateMillis``, which represent the timestamps of the first and last status packets that
@@ -97,9 +97,9 @@ packets in between the first and last packets, but that information is irrelevan
 the first and last packets used for generation, and it is possible that the first packet IS the last packet.
 
 Almost always, ``firstDateMillis`` is actually outside of the interval for this document. It is usually the last packet of the previous interval.
-The reason for this is because let's say that we have two intervals right next to each other. 
+The reason for this is because let's say that we have two intervals right next to each other.
 13:15-13:30 and 13:30-13:45. The first interval has data from 13:14 to 13:29 and the second interval has data from 13:29 to 13:44.
-Let's say that during the first interval 1.0 kWh was reported and during the second interval 1.0 kWh was reported. 
+Let's say that during the first interval 1.0 kWh was reported and during the second interval 1.0 kWh was reported.
 Let's say that the device read these values at these times: ``13:14=4.5kWh``, ``13:29=5.5kWh``, ``13:31=5.6kWh``, ``13:44=6.5kWh``.
 Now, between 13:14 and 13:44, you can see that a total of 2.0 kWh was generated. However, if the generation of this data used 13:31 as the
 start packet for the second interval, the generated values would end up being 1.0 kWh and 0.9 kWh respectively.
@@ -146,7 +146,7 @@ Here's an example of data that would cause the following results:
     13:45-14:00 generationKWH=0.3, start=13:46, end=13:55, unknownStart=13:14, unknownGeneration=0.4
 
 You can now see that the unknown component represents the accumulation of data from previous intervals that were unknown all the way back to
-the last "known" interval. This allows us to say "I know that 0.3 kWh was generated between 13:45 and 14:00", 
+the last "known" interval. This allows us to say "I know that 0.3 kWh was generated between 13:45 and 14:00",
 and "I know that sometime between 13:14 and 13:46 0.4 kWh was generated.
 I don't know if all of that 0.4 kWh came from one period or another, I just know that it happened."
 
@@ -161,7 +161,7 @@ Each cache type supports combining two intervals of data right next to each othe
 to make a 13:15-13:45 interval. You can keep combining intervals of data until you get a bunch of intervals that you want, or more commonly
 combining all the intervals so you can get a single piece of data, such as the generation kWh for a single day.
 
-Let's say that we combine a two ``chargeControllerAccumulation`` types of data. 
+Let's say that we combine a two ``chargeControllerAccumulation`` types of data.
 ``13:15-13:30 = 0.5 kWh generated`` and
 ``13:30-13:45 = 0.6 kWh generated``.
 Combining them gives us a result of ``13:15-13:45 = 1.1 kWh generated``.
@@ -234,12 +234,12 @@ it can be an unreliable estimate of what actually happened during the (possibly 
 Combining ``batteryRecord``
 ------------------------------
 
-Combining two battery record cache periods is relatively simple. The minimum of the minimums becomes the new minimum 
+Combining two battery record cache periods is relatively simple. The minimum of the minimums becomes the new minimum
 and the maximum of the maximums becomes the new maximum. The battery voltage hours gets added up along with the known duration hours.
 The tricky part, is what happens to unknown data. If we followed this exactly how the charge controller cache handles this,
 the unknown component of the later period would be added to the known component of the resulting combination.
 However, remember that an unknown component was calculated using two data points, and is extremely inprecise.
-Because of this, a battery record cache also has a "gap" component, which represents unknown components 
+Because of this, a battery record cache also has a "gap" component, which represents unknown components
 somewhere in the middle of the period. This allows someone to include or exclude the gap component in the calculation of an average.
 This gives choice to the users of this data so they can either ignore the "gap" component, or just add it onto the known component.
 
@@ -254,18 +254,18 @@ IdentificationCacheNodeCreator is an interface that is used for generating data 
 You can view it here:
 :blob:`master/core/src/main/java/me/retrodaredevil/solarthing/rest/cache/creators/IdentificationCacheNodeCreator/java`
 
-The interface is pretty simple. ``getAcceptedType()`` should return the class of the type to accept. 
+The interface is pretty simple. ``getAcceptedType()`` should return the class of the type to accept.
 For instance ``BatteryVoltage`` to get any type of device that provides the battery voltage.
 ``getCacheName()`` should return the name of the cache, which should be unique among all cache names. Some examples of names
-already in use are ``batteryRecord``, ``chargeControllerAccumulation``, and ``fxAccumulation``. 
+already in use are ``batteryRecord``, ``chargeControllerAccumulation``, and ``fxAccumulation``.
 New names should use camelCase, and should NOT be redundant by including "cache" in the name.
 
 The most important method of this interface is the create method. The parameters taken are as follows:
 
 * ``identifierFragment``: Represents the fragment and identifier for a given device
-* ``packets``: The packets of the type given by ``getAcceptedType()``. 
-  Note that these packets may and will be out of the range of the given period. 
-  The implementation should filter for the given period or use the extra data for *smart* calculations. 
+* ``packets``: The packets of the type given by ``getAcceptedType()``.
+  Note that these packets may and will be out of the range of the given period.
+  The implementation should filter for the given period or use the extra data for *smart* calculations.
   You can assume these are sorted in ascending order.
 * ``periodStart``: The start time of the period that data will be returned for
 * ``periodDuration``: The duration of the period that data will be returned for
@@ -274,7 +274,7 @@ One question one might have is why so much data is provided. The reason for this
 and period to be able to calculate its "unknown" component by backtracking up to ~4 hours before the period even started.
 In fact, any time this is called, it is expected that data should be provided for at least 4 hours before the start of the period.
 Usually, much more data will be provided when calling this method, but it should not use all of that. By not using all of the data
-provided, reproducible caches are possible so no matter how much data is provided in the ``packets`` list, 
+provided, reproducible caches are possible so no matter how much data is provided in the ``packets`` list,
 the same result should occur each time for a given cache and device.
 
 The data returned is an ``IdentificationCacheNode``, which holds the fragment of the device and also the data, which is required to hold
@@ -295,8 +295,8 @@ as its implementation directly calls ``IdentificationCacheNodeCreator``'s ``crea
 ``DefaultIdentificationCacheCreator``: ``CacheCreator`` implementation
 --------------------------------------------------------------------------------------------------
 
-A ``CacheCreator`` doesn't have to necessarily deal with ``IdentificationCacheNodeCreator`` s. 
-The main (and only) implementation of ``CacheCreator`` is ``DefaultIdentificationCacheCreator``, 
+A ``CacheCreator`` doesn't have to necessarily deal with ``IdentificationCacheNodeCreator`` s.
+The main (and only) implementation of ``CacheCreator`` is ``DefaultIdentificationCacheCreator``,
 which takes a ``IdentificationCacheNodeCreator``.
 
 This implementation is the lowest level of abstraction for data generation. Any lower and we'll start getting into
@@ -311,14 +311,14 @@ the logic for determining what periods to generate, cache, and store in the data
 Cache Logic
 -------------
 
-The actual logic for generating caches and storing them in the database is present here: 
+The actual logic for generating caches and storing them in the database is present here:
 :blob:`master/server/src/main/me/retrodaredevil/solarthing/rest/cache/CacheHandler.java`
 
 Usages of caches
 --------------------
 
 Currently, the SolarThing Server program exposes a REST API for querying cache data, which then will call
-methods provided by ``CacheHandler``. You can see this here: 
+methods provided by ``CacheHandler``. You can see this here:
 :blob:`master/server/src/main/me/retrodaredevil/solarthing/rest/cache/CacheController.java`
 
 Currently, nothing actually uses that REST endpoint, but there are usages of ``CacheController`` in some of the GraphQL queries.
@@ -328,15 +328,15 @@ Typically, a GraphQL query that needs to use cache data will be provided a ``Cac
 Creating your own cache
 -------------------------
 
-If you would like to make your own cache, then you first need to decide a couple of things. 
+If you would like to make your own cache, then you first need to decide a couple of things.
 We will assume that you would like to make a cache that is based around data for each device of a certain type.
 In this case, we will be implementing the ``IdentificationCacheData`` interface, or more likely, we will be extending an
 abstract implementation of that called ``BaseAccumulationDataCache``. Now, let's come up with some sort of name for our cache such as
-"cheese sandwich cache". 
+"cheese sandwich cache".
 
 We will create a class called ``CheeseSandwichDataCache``, which will extend ``BaseAccumulationDataCache``.
 This class should be created in the ``core`` module under the ``me.retrodaredevil.solarthing.type.cache.packets.data`` package.
-We should create a field like so: ``public static final String CACHE_NAME = "cheeseSandwich";``. 
+We should create a field like so: ``public static final String CACHE_NAME = "cheeseSandwich";``.
 We should annotate our class with ``@JsonExplicit``, and create a constructor annotated with ``@JsonCreator``.
 You can see an example here: :blob:`master/core/src/main/java/me/retrodaredevil/solarthing/type/cache/packets/data/BatteryRecordDataCache.java`
 

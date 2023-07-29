@@ -36,10 +36,10 @@ Open in IntelliJ
 
 File -> Open, then navigate to the place where you cloned ``solarthing``.
 
-Further Setup for graphql and web module
+Further Setup for server and web module
 ------------------------------------------
 
-The graphql module AKA SolarThing Server depends on the ``web`` module, which contains a React application.
+The server module depends on the ``web`` module, which contains a React application.
 This React application requires ``npm`` and ``node`` to be installed on your system. A tool commonly used to install and
 manage the these commands command is nvm, which can be installed here: https://github.com/nvm-sh/nvm#install--update-script.
 Once ``nvm`` is installed, you can use it to install like so:

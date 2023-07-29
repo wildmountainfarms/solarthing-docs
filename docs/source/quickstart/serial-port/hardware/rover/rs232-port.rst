@@ -4,7 +4,7 @@ Rover RS232 Port
 So you have a Rover (or supported device) with an RS232 port?
 
 Renogy is no longer supplying RS232 cables with their products that have RS232 ports.
-RICH Solar used to sell a compatible cable undle `this link <https://richsolar.com/products/rs232-cable>`_, but it is no longer available.
+RICH Solar used to sell a compatible cable under `this link <https://richsolar.com/products/rs232-cable>`_, but it is no longer available.
 
 That means that most people will have to create their own cable.
 
@@ -33,9 +33,9 @@ Creating your own cable
 To create your own cable, you will need an RJ12 cable that you can strip to get the bare wires. You will also need an RS232 adapter.
 Typically, an RS232 DB9 to USB cable is used. To make the connections easier to make with the DB9 port, a breakout board is recommended.
 
-Once you know which wires on the RJ12 cable are RX, TX, and GND, you connect: 
+Once you know which wires on the RJ12 cable are RX, TX, and GND, you connect:
 
-* The RJ12's RX to the DB9's TX 
+* The RJ12's RX to the DB9's TX
 * The RJ12's TX to the DB9's RX
 * GND to GND
 

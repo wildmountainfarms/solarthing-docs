@@ -6,9 +6,9 @@ So you have SolarThing set up and uploading to a database? Now all we need to do
 
 
 .. toctree::
-   :maxdepth: 1
-   :caption: Your Options
+  :maxdepth: 1
+  :caption: Your Options
 
-   graphql-grafana
-   influxdb-grafana
-   pvoutput
+  solarthing-server/index
+  influxdb-grafana
+  pvoutput
