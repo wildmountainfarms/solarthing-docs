@@ -12,6 +12,32 @@ or use a particular directory for configuration. Let's change our directory to t
 
   .. group-tab:: Docker Install
 
+    Your working directory should contain ``docker-compose.yml``. (It should not contain a folder named ``config``.
+    Assuming you have just configured a program to monitor a serial port, you will need to add a few lines to your ``docker-compose.yml``.
+    Make sure you add the ``cap_add`` and ``devices`` sections so it looks like this:
+
+    .. code-block:: yaml
+
+      version: '3.7'
+
+      services:
+        solarthing-main:
+          image: 'ghcr.io/wildmountainfarms/solarthing:latest'
+          container_name: solarthing-main
+          restart: 'unless-stopped'
+          command: run --base config/base.json
+      # BEGIN ADD THESE LINES
+      #    group_add: # this is only necessary if you are using a user other than root
+      #      - dialout
+          cap_add:
+            - SYS_RAWIO
+          devices:
+            - '/dev/ttyUSB0:/dev/ttyUSB0'
+      # END ADD THESE LINES
+          volumes:
+            - './main/config:/app/config:ro'
+            - './main/logs:/app/logs'
+
     Now run:
 
     .. code-block:: shell

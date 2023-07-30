@@ -5,10 +5,6 @@ Documentation for configuring SolarThing to monitor a Renogy Rover (or supported
 
 First, run these commands:
 
-
-.. code-block:: shell
-
-
 .. tabs::
 
   .. code-tab:: shell Docker Install

@@ -1,9 +1,23 @@
 SolarThing
 ============
 
+|release| |stars|
+
+.. |stars| image:: https://img.shields.io/github/stars/wildmountainfarms/solarthing.svg?style=social
+  :target: https://github.com/wildmountainfarms/solarthing/stargazers
+
+.. |release| image:: https://img.shields.io/github/v/release/wildmountainfarms/solarthing.svg
+  :target: https://github.com/wildmountainfarms/solarthing/releases
+
+
 **SolarThing** is an application that can monitor data from a variety of solar charge controllers and inverters.
 SolarThing supports running in Docker and also supports a native install.
 Code and issues available at https://github.com/wildmountainfarms/solarthing.
+
+SolarThing targets monitoring off-grid solar installations.
+The Renogy Rover and EPEver Tracer are typically used for smaller scale off-grid setups, so you will likely not use SolarThing on a larger install or residential install.
+The Outback MATE 1/2 is also supported, but is far less common than the cheaper charge controllers.
+
 
 To jump to installation, go to :doc:`quickstart/install/index`.
 
@@ -31,6 +45,15 @@ With more advanced configurations of SolarThing, it can be used as an automation
 
 SolarThing supports Outback MATE 1 and 2, Renogy Rover and similar devices, EPEver Tracer charge controllers.
 For more information, check out :doc:`about/supported-products`.
+
+Overview Diagram
+-----------------
+
+This shows an example setup of SolarThing and the connections between each component.
+You may make your setup however you would like, with or without all the features shown in the diagram.
+
+.. figure:: /images/solarthing_diagram.svg
+  :width: 100%
 
 This Documentation
 -------------------
