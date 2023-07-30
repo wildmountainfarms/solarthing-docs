@@ -67,9 +67,6 @@ Devices not detected
 If you tried checking for a rover or tracer and got that no devices were detected, don't worry!
 It is common for these devices to use Modbus Addresses other than ``1``. We can try detecting using an address other than ``1`` like so:
 
-.. code-block:: shell
-
-
 .. tabs::
 
   .. code-tab:: shell Docker Install

@@ -1,14 +1,16 @@
 Frequently Asked Questions
 ==========================
 
+Common Questions
+------------------
 
 Can SolarThing run on an Arduino?
----------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 No. SolarThing uses Java, which does not run on an Arduino.
 
 Is there an ISO image I can install to my Pi to have everything set up?
-------------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 No. See enhancement issue: :issue:`79`.
 
