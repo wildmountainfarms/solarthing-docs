@@ -41,9 +41,7 @@ Paste this into your newly created file:
       }
     },
     "config": {
-      "protocol": "http",
-      "host": "localhost",
-      "port": 5984,
+      "url": "http://localhost:5984",
       "username": "admin",
       "password": "relax",
       "connection_timeout": 1.5,

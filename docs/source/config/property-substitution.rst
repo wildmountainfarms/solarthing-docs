@@ -34,9 +34,7 @@ For instance, let's take a CouchDB configuration that looks like this:
   {
     "type": "couchdb",
     "config": {
-      "protocol": "http",
-      "host": "wmf-couchdb",
-      "port": 5984,
+      "url": "http://wmf-couchdb:5984",
       "connection_timeout": "${env:COUCH_CONNECTION_TIMEOUT}",
       "call_timeout": "${env:COUCH_CALL_TIMEOUT}"
     }

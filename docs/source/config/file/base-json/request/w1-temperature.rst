@@ -10,6 +10,14 @@ Configuring your Raspberry Pi
 The tutorial here: https://www.deviceplus.com/raspberry-pi/raspberrypi_entry_018/ provides a great walkthrough of the necessary steps to
 wire the sensor correctly and to enable the necessary drivers.
 
+.. code-block::
+
+  echo w1-gpio >> /etc/modules
+  echo w1-therm >> /etc/modules
+  echo "dtoverlay=w1-gpio-pullup,gpiopin=4" >> /boot/config.txt
+  reboot
+
+
 
 Editing ``base.json``
 ----------------------
