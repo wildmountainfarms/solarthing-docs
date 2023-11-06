@@ -14,13 +14,13 @@ To make sure you are ready for future steps in the tutorial, run this command:
 
 .. code-block:: shell
 
-  docker run ghcr.io/wildmountainfarms/solarthing version
+  docker run --rm ghcr.io/wildmountainfarms/solarthing version
 
 You should get output similar to:
 
 .. code-block:: console
 
-  pi@solarpi:~$ docker run ghcr.io/wildmountainfarms/solarthing version
+  pi@solarpi:~$ docker run --rm ghcr.io/wildmountainfarms/solarthing version
   SolarThing made by Lavender Shannon
   Jar: solarthing.jar
   Jar last modified: 2023-07-02T18:21:48Z

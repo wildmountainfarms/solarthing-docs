@@ -10,7 +10,7 @@ Run ``solarthing check -h`` to see usage of the command
 
   .. code-tab:: console Docker Install
 
-    pi@raspberrypi:/opt/solarthing$ sudo docker run ghcr.io/wildmountainfarms/solarthing check -h
+    pi@raspberrypi:/opt/solarthing$ sudo docker run --rm ghcr.io/wildmountainfarms/solarthing check -h
     The options available are:
             [--help -h]
             [--modbus value] : The modbus address if using the rover or tracer type. Defaults to 1 if not set
@@ -36,9 +36,9 @@ it is likely ``/dev/ttyUSB0``. So if we have a rover, we can run a command like 
 
   .. code-tab:: shell Docker Install
 
-    sudo docker run --privileged -v /dev:/dev ghcr.io/wildmountainfarms/solarthing check --port /dev/ttyUSB0 --type rover
+    sudo docker run --rm --privileged -v /dev:/dev ghcr.io/wildmountainfarms/solarthing check --port /dev/ttyUSB0 --type rover
     # or if you would prefer not to use --privileged
-    sudo docker run --cap-add=SYS_RAWIO --device "/dev/ttyUSB0:/dev/ttyUSB0" ghcr.io/wildmountainfarms/solarthing check --port /dev/ttyUSB0 --type rover
+    sudo docker run --rm --cap-add=SYS_RAWIO --device "/dev/ttyUSB0:/dev/ttyUSB0" ghcr.io/wildmountainfarms/solarthing check --port /dev/ttyUSB0 --type rover
 
   .. code-tab:: shell Native Install
 
@@ -71,7 +71,7 @@ It is common for these devices to use Modbus Addresses other than ``1``. We can 
 
   .. code-tab:: shell Docker Install
 
-    sudo docker run --privileged -v /dev:/dev ghcr.io/wildmountainfarms/solarthing check --port /dev/ttyUSB0 --type rover --modbus 10
+    sudo docker run --rm --privileged -v /dev:/dev ghcr.io/wildmountainfarms/solarthing check --port /dev/ttyUSB0 --type rover --modbus 10
 
   .. code-tab:: shell Native Install
 
@@ -83,7 +83,7 @@ The above command checks for a rover at address ``10``. If that doesn't work I r
 
   .. code-tab:: shell Docker Install
 
-    sudo docker run --privileged -v /dev:/dev ghcr.io/wildmountainfarms/solarthing check --port /dev/ttyUSB0 --type rover --modbus 1 --scan
+    sudo docker run --rm --privileged -v /dev:/dev ghcr.io/wildmountainfarms/solarthing check --port /dev/ttyUSB0 --type rover --modbus 1 --scan
 
   .. code-tab:: shell Native Install
 

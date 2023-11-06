@@ -71,7 +71,7 @@ Now let's run the setup program:
 
   .. code-tab:: shell Docker Install
 
-    sudo docker run -v ./config:/app/config ghcr.io/wildmountainfarms/solarthing run --couchdb-setup config/couchdb.json
+    sudo docker run --rm -v ./config:/app/config ghcr.io/wildmountainfarms/solarthing run --couchdb-setup config/couchdb.json
 
   .. code-tab:: shell Native Install
 
