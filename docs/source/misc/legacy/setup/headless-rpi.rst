@@ -1,6 +1,11 @@
 Headless Raspberry Pi Setup
 =============================
 
+.. warning::
+
+  This page may be outdated.
+  For up to date documentation and for a more consistent experience across different single board computers, we recommend to instead setup :doc:`/quickstart/device-setup/dietpi`.
+
 If you want to use your Raspberry Pi without a monitor and have it automatically connect to your WiFi without
 having to attach a keyboard and monitor, this'll help. You can do all SolarThing configuration either using a monitor and keyboard, or
 "headless" over SSH without a monitor or keyboard.
@@ -12,7 +17,7 @@ Download Image
 
 If you haven't already flashed a micro SD card with Raspberry Pi OS, go here to download it: https://www.raspberrypi.com/software/operating-systems/
 
-.. warning::
+.. caution::
 
     No matter what, I do not recommend that you use "Raspberry Pi OS with desktop and recommended software" as
     it takes forever to update if you don't remove any of the software.
@@ -45,7 +50,7 @@ Once again, navigate to the "boot" drive.
 Inside the boot drive, create and start editing a new file named ``wpa_supplicant.conf``.
 
 .. note::
-    
+
     You'll want to make sure that Windows or Mac OS isn't hiding the file extension as you do not want to end up with a file such as ``wpa_supplicant.conf.txt``
 
 In the file, add the following content:
@@ -75,7 +80,7 @@ Using SSH
 -----------
 
 If you set everything up correctly, you can ssh into your pi by using username: ``pi`` and password ``raspberry``.
-On Linux or Mac OS, open a terminal and type ``ssh pi@<YOUR IP>``, then enter ``raspberry`` when it prompts for a password. 
+On Linux or Mac OS, open a terminal and type ``ssh pi@<YOUR IP>``, then enter ``raspberry`` when it prompts for a password.
 On Windows, you can use something like Putty.
 
 Updating your Raspberry Pi

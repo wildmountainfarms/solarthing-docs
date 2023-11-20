@@ -2,7 +2,7 @@ Docker Install
 ===============
 
 If you are doing a Docker install, you can choose where you would like to place your configuration files.
-You must also have `docker installed <https://docs.docker.com/desktop/install/linux-install/>`_.
+You must also have `docker installed <https://docs.docker.com/engine/install/>`_.
 
 Throughout the tutorials here, you will find yourself running many ``docker run`` commands.
 When you finally are ready to configure SolarThing, you will end up writing a ``docker-compose.yml`` file.

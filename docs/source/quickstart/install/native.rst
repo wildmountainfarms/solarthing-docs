@@ -4,6 +4,11 @@ Native Install
 If you choose to do so, you can install SolarThing to a different location than ``/opt``. If you do, just realize that this documentation
 will refer to ``/opt/solarthing/`` instead of whatever custom location you use.
 
+.. warning::
+
+  A native install is no longer the recommended way to run SolarThing.
+  Please consider the Docker install before continuing: :doc:`docker`.
+
 
 Installing
 -----------

@@ -1,6 +1,11 @@
 Headless Armbian Setup
 ==========================
 
+.. warning::
+
+  This page may be outdated.
+  For up to date documentation and for a more consistent experience across different single board computers, we recommend to instead setup :doc:`/quickstart/device-setup/dietpi`.
+
 Armbian is an operating system that runs on many boards including but not limited to:
 
 * Orange Pi

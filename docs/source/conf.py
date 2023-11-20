@@ -113,4 +113,9 @@ redirects = {
     "stability": "maintenance/stability.html",
     "legacy/index": "../misc/legacy/index.html",
     "legacy/rpi-cpu-temp": "../misc/legacy/rpi-cpu-temp.html",
+
+    "setup/index": "../misc/legacy/setup/index",
+    "setup/headless-rpi": "../misc/legacy/setup/headless-rpi",
+    "setup/headless-armbian": "../misc/legacy/setup/headless-armbian",
+    "setup/headless-odroid": "../misc/legacy/setup/headless-odroid",
 }

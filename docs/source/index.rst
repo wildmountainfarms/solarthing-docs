@@ -62,9 +62,7 @@ You may make your setup however you would like, with or without all the features
     :width: 100%
 
 
-To install, checkout :doc:`quickstart/install/index`.
-
-If you do not have your Raspberry Pi setup yet, you can instead start at :doc:`setup/headless-rpi`.
+To get started, go to :doc:`/quickstart/device-setup/dietpi`.
 
 About
 ------
@@ -84,6 +82,7 @@ Quickstart
    :maxdepth: 3
    :caption: Quickstart
 
+   quickstart/device-setup/index
    quickstart/install/index
    quickstart/serial-port/index
    quickstart/config/index
@@ -99,7 +98,6 @@ Documentation
    config/index
    maintenance/index
    software/index
-   setup/index
    develop/index
    misc/index
 

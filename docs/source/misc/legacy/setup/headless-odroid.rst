@@ -1,6 +1,11 @@
 Headless Odroid Setup
 ======================
 
+.. warning::
+
+  This page may be outdated.
+  For up to date documentation and for a more consistent experience across different single board computers, we recommend to instead setup :doc:`/quickstart/device-setup/dietpi`.
+
 Odroids primarily run most Linux distributions but can also run Android as an operating system.
 SolarThing has not been tested with Android, so you should use the provided Ubuntu image.
 
@@ -49,7 +54,7 @@ The password is ``odroid`` in both cases.
 Configure WiFi
 ---------------
 
-If you have a WiFi adapter, you can easily configure the WiFi though the command line. 
+If you have a WiFi adapter, you can easily configure the WiFi though the command line.
 Configuring the WiFi network on an Odroid running Ubuntu is just like configuring WiFi on any Ubuntu through the command line.
 
 You can follow instructions here: https://wiki.odroid.com/odroid_go_advance/application_note/sdio_wifi#configuring_wifi_station_mode_2_-_using_command_line.
@@ -61,8 +66,8 @@ The two main commands you will be running are here:
     nmcli dev wifi list
     nmcli dev wifi con 'SSID_1' password 'password_of_ssid1'
 
-.. note:: 
-    
+.. note::
+
     If your WiFi network is not currently online, the command will fail. In that case, you can manually create a file in ``/etc/NetworkManager/system-connections/`` named ``MYSSID.nmconnection``.
 
 You can then check to make sure you are connected with this:
@@ -74,7 +79,7 @@ You can then check to make sure you are connected with this:
     ping 8.8.8.8
 
 .. note::
-    
+
     If you have the Odroid connected via Ethernet to the same network, it may not work at the same time as it could try to assign similar IP addresses
     to your Odroid. If it doesn't work, try disconnecting the Ethernet and going to your router's homepage to find the new IP address of your Odroid.
 
