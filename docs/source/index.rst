@@ -111,4 +111,5 @@ Documentation
      :caption: Links
 
      GitHub <https://github.com/wildmountainfarms/solarthing>
+     Forum <https://github.com/wildmountainfarms/solarthing/discussions>
      Report an Issue <https://github.com/wildmountainfarms/solarthing/issues>
