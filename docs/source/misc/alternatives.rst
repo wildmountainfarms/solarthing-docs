@@ -54,7 +54,7 @@ These alternatives are for the Outback MATE 1 and MATE 2.
 
 * https://github.com/jorticus/pymate
 
-  * [matecom.py](https://github.com/jorticus/pymate/blob/master/pymate/matecom.py) does a similar thing to SolarThing
+  * `matecom.py <https://github.com/jorticus/pymate/blob/master/pymate/matecom.py>`_ does a similar thing to SolarThing
   * Most of this library is designed to emulate an Outback MATE to communicate with devices using Outback proprietary protocol.
 
     * If you use these features of this library, a MATE is not actually required.
