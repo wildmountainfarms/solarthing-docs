@@ -9,6 +9,10 @@ Install GraphQL Datasource to Grafana
 
 Go here to learn how to install the data source: https://grafana.com/grafana/plugins/fifemon-graphql-datasource/?tab=installation
 
+.. note::
+
+  Documentation for setting up the GraphQL datasource is outdated. See :issue:`190` for more information.
+
 
 Configuring GraphQL Datasource
 --------------------------------

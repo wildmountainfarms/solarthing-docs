@@ -5,7 +5,11 @@ In SolarThing there is a whole package dedicated to defining GraphQL endpoints f
 :tree:`master/server/src/main/java/me/retrodaredevil/solarthing/rest/graphql/service`
 
 The ``/graphql`` endpoint is used to make GraphQL requests. There are many different possible queries to choose from.
-The structure of many of the queries are designed in such a way to make them easily useable with `graphql-datasource <https://github.com/fifemon/graphql-datasource>`.
+The structure of many of the queries are designed in such a way to make them easily usable with `graphql-datasource <https://github.com/fifemon/graphql-datasource>`.
+
+.. note::
+
+  Documentation for setting up the GraphQL datasource is outdated. See :issue:`190` for more information.
 
 The cool thing about GraphQL, is that you can tell it to query something, then only ask for some of the result.
 By asking for only some of the result, it may not have to do all the calculations.
