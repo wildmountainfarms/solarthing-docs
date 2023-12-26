@@ -5,10 +5,15 @@ If you have many running SolarThing instances, it makes sense to send all of the
 Graylog is an application to do just that. I recommend installing this in the same place you have CouchDB installed
 (which should be a device that is OK to have lots of disk activity).
 
+.. warning::
+
+  This page is considered legacy because this documentation is for an older version of Graylog, and has not been tested recently.
+  Additionally, encouraging users to install and setup Graylog is too big of an ask for most SolarThing users.
+
 .. note::
 
   You can find more official documentation here: https://go2docs.graylog.org/4-x/downloading_and_installing_graylog/docker.html.
-  However, I find that the documentation does not do a good job of describing what file permisisons each container can or cannot have.
+  However, I find that the documentation does not do a good job of describing what file permissions each container can or cannot have.
 
 .. code-block:: shell
 

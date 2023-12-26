@@ -107,9 +107,9 @@ redirects = {
     "config/commands/index": "../../actions/commands.html",
     "config/base-json/index": "../../config/file/base-json/index.html",
     "config/base-json/request/cpu-temperature": "../../config/file/base-json/request/cpu-temperature.html",
-    "logging/index": "../maintenance/logging/graylog.html",
-    "other/remote-monitor": "../maintenance/remote-monitor.html",
-    "other/security": "../maintenance/security.html",
+    "logging/index": "../misc/legacy/graylog.html",
+    "other/remote-monitor": "../misc/legacy/remote-monitor.html",
+    "other/security": "../misc/legacy/security.html",
     "stability": "maintenance/stability.html",
     "legacy/index": "../misc/legacy/index.html",
     "legacy/rpi-cpu-temp": "../misc/legacy/rpi-cpu-temp.html",
@@ -118,4 +118,8 @@ redirects = {
     "setup/headless-rpi": "../misc/legacy/setup/headless-rpi",
     "setup/headless-armbian": "../misc/legacy/setup/headless-armbian",
     "setup/headless-odroid": "../misc/legacy/setup/headless-odroid",
+
+    "maintenance/logging/graylog": "../../misc/legacy/graylog.html",
+    "maintenance/remote-monitor": "../misc/legacy/remote-monitor.html",
+    "maintenance/security": "../misc/legacy/security.html",
 }

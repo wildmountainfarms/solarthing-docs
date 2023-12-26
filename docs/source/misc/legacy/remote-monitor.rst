@@ -1,6 +1,10 @@
 Remote Monitoring
 ====================
 
+.. warning::
+
+  This page is considered legacy because this page is not complete enough to fully explain how to set everything up, or why it should be set up.
+
 There are many ways to remotely monitor your system. This page demonstrates how to setup a way to remotely monitor
 your system if you cannot port forward on your router or ISP.
 

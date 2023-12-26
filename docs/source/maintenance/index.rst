@@ -7,6 +7,4 @@ Maintenance
 
   updating
   logging/index
-  security
   stability
-  remote-monitor

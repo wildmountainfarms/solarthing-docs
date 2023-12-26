@@ -4,11 +4,16 @@ Security
 Security is important on any system, even if it is not running SolarThing software.
 This page will help you harden your system and make it more secure.
 
+.. warning::
+
+  This page is considered legacy because it may be outdated and is not an extensive enough guide to help make sure your device is completely secure.
+  The security of your device is your own responsibility.
+
 
 Secure your SSH server
 ------------------------
 
-.. note:: 
+.. note::
 
     This section is not for securing the ssh-port-forward-* containers. It is for securing/hardening SSHD daemons running on any of your devices.
 
@@ -29,7 +34,7 @@ Edit ``/etc/ssh/sshd_config`` and add this at the bottom:
 You can also install ``fail2ban`` on your system to automatically block spammers who attempt to login many times.
 
 .. code-block:: sh
-    
+
     sudo apt-get install -y fail2ban
     cd /etc/fail2ban
     cp jail.conf jail.local
@@ -43,7 +48,7 @@ You can use a firewall to block (or allow specific IPs) from connecting to certa
 This can be useful if you notice unknown IPs attempting to connect to your SSH port
 
 .. note::
-    Using ``ufw`` or ``/etc/hosts.deny`` without additional configuration will not block connections to docker containers 
+    Using ``ufw`` or ``/etc/hosts.deny`` without additional configuration will not block connections to docker containers
     (that use bridge networks--the default when exposing ports) because of how docker modifies iptables.
 
 .. code-block::
