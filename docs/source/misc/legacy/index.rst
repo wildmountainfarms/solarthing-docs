@@ -10,4 +10,6 @@ This contains legacy configuration that should only be used if you are using an 
    config-base-json-databases
    rpi-cpu-temp
    security
+   graylog
+   remote-monitor
 

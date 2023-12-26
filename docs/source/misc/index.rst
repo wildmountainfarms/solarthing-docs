@@ -6,4 +6,6 @@ Miscellaneous
   :caption: Contents
 
   alternatives
+  history
+  wildmountainfarms/index
   legacy/index
