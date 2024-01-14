@@ -2,7 +2,7 @@ History of SolarThing
 =========================
 
 This program started in the summer of 2017.
-This page talks about the history of
+This page talks about the history of SolarThing and has some anecdotes about design decisions that were made.
 
 
 Inspiration
