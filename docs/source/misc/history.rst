@@ -4,6 +4,23 @@ History of SolarThing
 This program started in the summer of 2017.
 This page talks about the history of SolarThing and has some anecdotes about design decisions that were made.
 
+.. only:: html
+
+  .. raw:: html
+
+      <a href="https://star-history.com/#wildmountainfarms/solarthing">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=wildmountainfarms/solarthing&type=Date&theme=dark" />
+          <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=wildmountainfarms/solarthing&type=Date" />
+          <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=wildmountainfarms/solarthing&type=Date" />
+        </picture>
+      </a>
+
+.. only:: not html
+
+  .. image:: https://api.star-history.com/svg?repos=wildmountainfarms/solarthing&type=Date
+      :target: https://star-history.com/#wildmountainfarms/solarthing
+      :alt: Star History Chart
 
 Inspiration
 --------------
