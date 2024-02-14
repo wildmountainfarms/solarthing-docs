@@ -16,12 +16,6 @@ This page talks about the history of SolarThing and has some anecdotes about des
         </picture>
       </a>
 
-.. only:: not html
-
-  .. image:: https://api.star-history.com/svg?repos=wildmountainfarms/solarthing&type=Date
-      :target: https://star-history.com/#wildmountainfarms/solarthing
-      :alt: Star History Chart
-
 Inspiration
 --------------
 
