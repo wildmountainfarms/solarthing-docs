@@ -83,7 +83,35 @@ Timeline
 * Switched from Ektorp to custom CouchDB library
 * Started to make some aspects of SolarThing use their own thread
 * The buried cable connecting the MATE2 failed. MATE was moved into the Battery Room. The RPi0 was set up to monitor it, but soon the RPi0 died for an unknown reason and was replaced by an RPi3. Now most monitoring runs off that RPi3.
+* Deprecated ``rover`` program to be replaced with ``request`` program.
+* Tracer support added (https://github.com/wildmountainfarms/solarthing/releases/tag/v2021.6.0)
+* Alter database added
 
+  * This adds support for scheduled commands that can be requested or canceled via a slack chatbot
+
+* GraphQL (SolarThing Server) program uses Java 11
+* Added ``/command/run`` endpoint to SolarThing server to allow sending of commands from Grafana
+
+2022
+^^^^
+
+* Documentation was made available on readthedocs
+* Added a React frontend to SolarThing Server (formerly SolarThing GraphQL)
+* Building of jar files automated using GitHub Actions
+* Local actions are now supported
+
+2023
+^^^^
+
+* ActionLang released (https://github.com/wildmountainfarms/solarthing/releases/tag/v2023.2.0)
+* Docker support
+* Java 11 required (Java 17 required for SolarThing Server)
+* Google Analytics removed
+
+2024
+^^^^
+
+* Development started on Wild GraphQL Datasource for Grafana
 
 Anecdotes
 -----------
