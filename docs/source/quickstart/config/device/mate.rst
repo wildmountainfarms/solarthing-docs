@@ -29,7 +29,7 @@ Paste this into the file:
     "source": "default",
     "fragment": 1,
     "unique": 60,
-    "databases_config": {
+    "database_config": {
       "databases": [
       ]
     },

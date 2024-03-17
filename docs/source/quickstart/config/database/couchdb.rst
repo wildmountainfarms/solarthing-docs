@@ -49,9 +49,44 @@ Paste this into your newly created file:
     }
   }
 
-OK, so the first part of that you can ignore for now, but the ``"config"`` part isn't too hard to understand.
-If you did not install CouchDB on this device, then you will likely have to change ``"host"`` to something different.
-You will likely change it to ``"host": "192.168.1.250"`` or something similar.
+You may ignore the ``"settings"`` object for now. Let's focus on the ``"config"`` part.
+Let's understand how to update the ``"url"`` to correctly refer to your database.
+
+* If CouchDB is installed on a different device (recommended)
+
+  * Set ``"url"`` to refer to the IP address of that device. For example, ``http://192.168.1.250:5984`` if the device's IP address is 192.168.1.250
+
+* If CouchDB is installed on the device SolarThing is running on
+
+  * If SolarThing is running in Docker
+
+    * If CouchDB is installed in Docker and is in the same docker compose file as SolarThing
+
+      * Set ``"url"`` to refer to the service name of the CouchDB container or its container name. For instance, ``http://couchdb:5984`` if ``couchdb`` is the name of the service or is the ``container_name``.
+
+    * CouchDB has its ``5984`` port exposed on the host machine
+
+      * Set ``"url"`` to refer to the host machine using either of the following:
+
+        * ``http://172.17.0.1:5984``  (recommended)
+        * ``http://<IP address of your device on the LAN>:5984`` (not recommended, prone to errors if your device's LAN IP address changes)
+
+
+  * If SolarThing is a native install
+
+    * Set ``"url"`` to be ``http://localhost:5984``
+
+.. warning::
+
+  Remember that you should not be running CouchDB on a Raspberry Pi, or any device whose filesystem uses an SD card.
+  SD cards are prone to failure if lots of data is written to them.
+  This is generally not a big deal unless you are running something like a database that has data being constantly written to it.
+
+.. note::
+
+  The ``settings`` object provided in the example configuration above is a reasonable default.
+  To understand it better or customize it to your liking, you will find more information about it at :ref:`config-database-settings`.
+
 
 While installing CouchDB, it likely had you set up an admin account. You can change the username and password to be the same as that.
 It is important that this user has admin permissions for the setup program to work.
@@ -71,7 +106,7 @@ Now let's run the setup program:
 
   .. code-tab:: shell Docker Install
 
-    sudo docker run --rm -v ./config:/app/config ghcr.io/wildmountainfarms/solarthing run --couchdb-setup config/couchdb.json
+    sudo docker run --rm -it -v $(pwd)/config:/app/config ghcr.io/wildmountainfarms/solarthing run --couchdb-setup config/couchdb.json
 
   .. code-tab:: shell Native Install
 

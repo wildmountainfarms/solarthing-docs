@@ -39,7 +39,7 @@ You can now paste this into the file:
     "source": "default",
     "fragment": 5,
     "unique": 30,
-    "databases_config": {
+    "database_config": {
       "databases": [
       ]
     },

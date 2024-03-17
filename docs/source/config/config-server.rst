@@ -17,7 +17,7 @@ Let's assume you had a config like this:
     "source": "default",
     "fragment": 2,
     "unique": 30,
-    "databases_config": {
+    "database_config": {
       "databases": [
       ]
     },
@@ -43,7 +43,7 @@ You can simply change it to:
     "source": "default",
     "fragment": 2,
     "unique": 30,
-    "databases_config": {
+    "database_config": {
       "databases": [
       ]
     },

@@ -13,7 +13,7 @@ Start editing ``base.json``. Right now, it should look something like:
 
   {
     // ...
-    "databases_config": {
+    "database_config": {
       "databases": [
       ]
     }
@@ -26,7 +26,7 @@ Let's change it to look like this:
 
   {
     // ...
-    "databases_config": {
+    "database_config": {
       "databases": [
         {
           "external": "config/<some database>.json"

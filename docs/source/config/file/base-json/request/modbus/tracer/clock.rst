@@ -18,7 +18,7 @@ Let's assume you had a config like this:
     "source": "default",
     "fragment": 5,
     "unique": 30,
-    "databases_config": {
+    "database_config": {
       "databases": [
       ]
     },
@@ -44,7 +44,7 @@ To sync the Tracer's clock with the system clock, just do this:
     "source": "default",
     "fragment": 5,
     "unique": 30,
-    "databases_config": {
+    "database_config": {
       "databases": [
       ]
     },

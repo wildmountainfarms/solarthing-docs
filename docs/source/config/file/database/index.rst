@@ -5,6 +5,12 @@ These pages are meant to hold more detailed information for the information you 
 
 .. toctree::
   :maxdepth: 1
+  :caption: General Information
+
+  general
+
+.. toctree::
+  :maxdepth: 1
   :caption: Databases
 
   couchdb
