@@ -28,11 +28,9 @@ All SolarThing Server configurations require CouchDB to be setup.
 GraphQL and Grafana
 """""""""""""""""""
 
-With a CouchDB database, SolarThing's Server program can be set up to serve data to Grafana. This is used alongside https://github.com/fifemon/graphql-datasource
+With a CouchDB database, SolarThing's Server program can be set up to serve data to Grafana.
+This is used alongside https://grafana.com/grafana/plugins/retrodaredevil-wildgraphql-datasource/
 
-.. note::
-
-  Documentation for setting up the GraphQL datasource is outdated. See :issue:`190` for more information.
 
 SolarThing Web
 """"""""""""""""""

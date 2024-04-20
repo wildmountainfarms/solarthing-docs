@@ -4,18 +4,20 @@ Grafana and the GraphQL Datasource
 With SolarThing Server fully setup and a Grafana instance installed on your system, you are ready to configure Grafana with the GraphQL Datasource!
 
 
-Install GraphQL Datasource to Grafana
----------------------------------------
+Install Wild GraphQL Datasource to Grafana
+--------------------------------------------
 
-Go here to learn how to install the data source: https://grafana.com/grafana/plugins/fifemon-graphql-datasource/?tab=installation
+Go here to learn how to install the data source: https://grafana.com/grafana/plugins/retrodaredevil-wildgraphql-datasource/?tab=installation
 
 .. note::
 
-  Documentation for setting up the GraphQL datasource is outdated. See :issue:`190` for more information.
+  If you search around Grafana plugins, you may notice `fifemon-graphql-datasource <https://grafana.com/grafana/plugins/fifemon-graphql-datasource/>`_.
+  Note that this plugin is deprecated and does not work on newer version of Grafana.
+  Additionally, the documentation on this page is not compatible with that data source.
 
 
-Configuring GraphQL Datasource
---------------------------------
+Configuring Wild GraphQL Datasource
+-------------------------------------
 
 Navigate to "Add data source" in Grafana.  Choose "GraphQL Data Source".
 
@@ -36,49 +38,111 @@ Keep all the other defaults, then click "Save & Test". You should see a green bo
   ``http://solarthing-server:8080/graphql`` where ``solarthing-server`` is the name of your container.
 
 
-Graph battery voltages
------------------------
+Simple Battery Voltage Graph
+-----------------------------
 
 Create a new panel on Grafana with the visualization of your choosing. Paste this into the query:
 
 .. code-block:: graphql
 
-    {
-        data:queryStatus(from:"$__from", to:"$__to", sourceId:"$sourceId") {
-            batteryVoltage {
-                Time:dateMillis
-                packet {
-                    batteryVoltage
-                    identifier { representation }
-                    identityInfo { displayName }
-                }
-            }
+  query ($from: Long!, $to: Long!) {
+    queryStatus(from: $from, to: $to) {
+      batteryVoltage {
+        dateMillis
+        packet {
+          batteryVoltage
         }
+      }
     }
+  }
 
-That might work right off the bat, but you should also change ``Data path``, ``Group by``, and ``Alias by`` like so:
+
+Once you have the query written, you can start configuring "Parsing Option 1" as such:
 
 
 +------------+-------------------------------------------+
-| Data path  |  ``data.batteryVoltage``                  |
+| Data path  |  ``queryStatus.batteryVoltage``           |
 +------------+-------------------------------------------+
-| Group by   |  ``packet.identifier.representation``     |
+| Time path  |  ``dateMillis``                           |
 +------------+-------------------------------------------+
-| Alias by   |``$field_packet.identityInfo.displayName`` |
-+------------+-------------------------------------------+
-
-The ``Data path`` is the path to get into the structure containing the ``Time`` variable.
-``Group by`` is useful for advanced SolarThing installations that have multiple devices.
-``Alias by`` Will make each device have a human friendly name.
-The other parameters can be left blank or default.
-
-.. note::
-    The above query and other queries on this page use ``$sourceId`` to represent the source ID.
-
-    You can instead use ``default`` if you do not want to create a ``$sourceId`` variables in Grafana.
-    If you would like to create a variables, you can go here to create a Constant or Custom variable: https://grafana.com/docs/grafana/latest/variables/variable-types/
 
 You should get the above query to work before attempting other queries, as the above query is one of the most simple queries you can have.
+
+(Advanced) Battery Voltage Graph with Multiple Devices
+--------------------------------------------------------
+
+If you have a SolarThing instance with multiple devices, you may want to change your battery voltage query to correctly identify each device.
+
+.. code-block:: graphql
+
+  query ($from: Long!, $to: Long!, $sourceId: String!) {
+    queryStatus(from: $from, to: $to, sourceId: $sourceId) {
+      batteryVoltage {
+        dateMillis
+        fragmentIdString
+        packet {
+          batteryVoltage
+          identifier {
+            representation
+          }
+          identityInfo {
+            displayName
+          }
+        }
+      }
+    }
+  }
+
+The first difference you'll notice is we now have fields ``fragmentIdString``, ``packet.identifier.representation`` and ``packet.identityInfo.displayName`` at our disposal.
+You may also notice that this query includes a ``$sourceId: String!`` variable.
+The inclusion of the Source ID is not required, but is recommended if you ever want to have different systems using the same SolarThing CouchDB database.
+Before we use the additional fields, let's first pass in a ``sourceId`` variable that we define in Grafana. Create a Constant or Custom variable: https://grafana.com/docs/grafana/latest/variables/variable-types/
+Once the variable is created within Grafana, you need to pass it to the query by adding it to the variables section of the GraphiQL editor:
+
+.. code-block:: json
+
+  {
+    "sourceId": "$sourceId"
+  }
+
+Now that we have written the query and passed in the necessary variables, it's time to configure "Parsing Option 1":
+
++------------+-------------------------------------------+
+| Data path  |  ``queryStatus.batteryVoltage``           |
++------------+-------------------------------------------+
+| Time path  |  ``dateMillis``                           |
++------------+-------------------------------------------+
+
+Initially, it looks just the same as before, but now we need to add some labels.
+Let's create a label called ``displayName`` by typing ``displayName`` into the "Create label" box, and then pressing enter.
+Under the time path in Parsing Option 1, you should see a new entry with the label: ``Label: "displayName"``.
+Configure this to be a "Field" label, rather than a "Constant" label by clicking the first dropdown.
+Now, set its value to ``packet.identityInfo.displayName``.
+You may set "If absent" to "Error" if you would like, because we never expect that field to be absent from the response.
+For completeness's sake, let's also add labels for the fragment ID, and the representation of the identifier.
+The table below shows recommended label names and values for these.
+
++---------------------------+------------+-------------------------------------------+-------------+
+| (Recommended) Label name  | Label type |  Label value                              | If absent   |
++===========================+============+===========================================+=============+
+| ``displayName``           | Field      |  ``packet.identityInfo.displayName``      | Error       |
++---------------------------+------------+-------------------------------------------+-------------+
+| ``fragmentId``            | Field      |  ``fragmentIdString``                     | Error       |
++---------------------------+------------+-------------------------------------------+-------------+
+| ``identifier``            | Field      |  ``packet.identifier.representation``     | Error       |
++---------------------------+------------+-------------------------------------------+-------------+
+
+The query is now fully configured. Click the refresh dashboard button to confirm that the battery voltages are graphed correctly.
+As it is now, you should see different data points for each device, however, these data points do not yet have labels on them.
+(Currently the legend is cluttered with illegible names).
+To fix this, navigate to the right side of the screen and scroll until you find the "Standard Options" section.
+Expand the Standard options section if necessary.
+Within this section, there is a field called "Display name" that you can change.
+We want to set its value to ``${__field.labels.displayName}`` or ``${__field.labels["displayName"]}``.
+Either one will work, although the second one is required if the name of your label is not ``displayName`` AND it has spaces in it.
+
+With this configuration, your graph should now have a legend labeled by the display name of the device,
+and the graph should show battery voltages of each device!
 
 
 More queries

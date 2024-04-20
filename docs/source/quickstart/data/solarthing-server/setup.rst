@@ -54,7 +54,7 @@ Just like with whatever uploader program you configured, we're going to change o
 
     .. code-block:: shell
 
-      cd /opt/solarthing/program/server
+      cd /opt/solarthing/program/graphql
       nano config/application.properties
 
     .. note::
