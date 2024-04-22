@@ -30,24 +30,34 @@ Creating your configuration directory
 --------------------------------------
 
 To make sure you can configure SolarThing easily, you should determine what directory you would like to use to contain your configuration.
-You may choose to put SolarThing config in a place such as ``~/Documents/solarthing-config`` or even in a place like ``/opt/solarthing-config``.
+You may choose to put SolarThing config in a place such as ``~/Documents/containers/solarthing`` or even in a place like ``/opt/containers/solarthing``.
 It is recommend to put SolarThing configuration somewhere in your home directory so that your user has permission to edit the configuration without sudo.
 
-For the purpose of this tutorial, I will choose ``~/Documents/solarthing-config``.
+For the purpose of this tutorial, I will choose ``~/Documents/containers/solarthing``.
 Since we are choosing that location, it should also have a folder named config nested inside it.
 We will now create a ``docker-compose.yml`` file so that when we configure SolarThing in future steps we can easily run and test it.
 
 .. note::
 
-  In this example we are creating a subfolder of ``solarthing-config`` called main.
+  In this example we are creating a subfolder of ``solarthing`` called main.
   This ``main`` folder should house the all of the files for a given SolarThing instance.
   If you would like, you can use a name other than ``main`` such as ``rover`` or ``mate``,
   as long as it makes sense to you and the program you plan to run.
 
+Here is an example file structure:
+
+.. code-block::
+
+  ~/Documents/containers/solarthing/
+  ├── main/
+  │   └── config/
+  │       └── base.json
+  └── docker-compose.yml
+
 .. code-block:: shell
 
-  mkdir -p ~/Documents/solarthing-config/main/{config,logs}
-  cd ~/Documents/solarthing-config/
+  mkdir -p ~/Documents/containers/solarthing/main/{config,logs}
+  cd ~/Documents/containers/solarthing/
   nano docker-compose.yml
 
 At this point you should be editing ``docker-compose.yml``.
@@ -58,7 +68,7 @@ Place this inside your file:
   version: '3.7'
 
   services:
-    solarthing-main:
+    main:
       image: 'ghcr.io/wildmountainfarms/solarthing:latest'
       container_name: solarthing-main
       restart: 'unless-stopped'
@@ -85,12 +95,12 @@ The program should crash with output similar to this:
 
 .. code-block::
 
-  solarthing  | 2023-07-12 04:32:40.939 [main] INFO  me.retrodaredevil.solarthing.program.SolarMain - [LOG] Beginning main. Jar: Jar: solarthing.jar Last Modified: 2023-07-12T04:29:54Z Java version: 19.0.2
-  solarthing  | [stdout] Beginning main. Jar: Jar: solarthing.jar Last Modified: 2023-07-12T04:29:54Z Java version: 19.0.2
-  solarthing  | [stderr] Beginning main. Jar: Jar: solarthing.jar Last Modified: 2023-07-12T04:29:54Z Java version: 19.0.2
-  solarthing  | 2023-07-12 04:32:40.990 [main] INFO  me.retrodaredevil.solarthing.program.SolarMain - Using base configuration file: config/base.json
-  solarthing  | 2023-07-12 04:32:40.990 [main] ERROR me.retrodaredevil.solarthing.program.SolarMain - (Fatal)Base configuration file does not exist!
-  solarthing exited with code 0
+  main  | 2023-07-12 04:32:40.939 [main] INFO  me.retrodaredevil.solarthing.program.SolarMain - [LOG] Beginning main. Jar: Jar: solarthing.jar Last Modified: 2023-07-12T04:29:54Z Java version: 19.0.2
+  main  | [stdout] Beginning main. Jar: Jar: solarthing.jar Last Modified: 2023-07-12T04:29:54Z Java version: 19.0.2
+  main  | [stderr] Beginning main. Jar: Jar: solarthing.jar Last Modified: 2023-07-12T04:29:54Z Java version: 19.0.2
+  main  | 2023-07-12 04:32:40.990 [main] INFO  me.retrodaredevil.solarthing.program.SolarMain - Using base configuration file: config/base.json
+  main  | 2023-07-12 04:32:40.990 [main] ERROR me.retrodaredevil.solarthing.program.SolarMain - (Fatal)Base configuration file does not exist!
+  main exited with code 0
 
 Now you are ready to continue!
 Head over to :ref:`after-install`.

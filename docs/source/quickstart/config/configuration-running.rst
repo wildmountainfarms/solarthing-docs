@@ -6,34 +6,46 @@ or use a particular directory for configuration. Let's change our directory to t
 
 .. code-block:: shell
 
-    cd <THE DIRECTORY YOU USED IN PREVIOUS STEPS>
+  cd <THE DIRECTORY YOU USED IN PREVIOUS STEPS>
 
 .. tabs::
 
   .. group-tab:: Docker Install
 
-    Your working directory should contain ``docker-compose.yml``. (It should not contain a folder named ``config``.
+    Your working directory should contain ``docker-compose.yml``.
+
+    Here is an example of what the file structure might look like at this point in the configuration process:
+
+    .. code-block::
+
+      ~/Documents/containers/solarthing/
+      ├── main/
+      │   └── config/
+      │       └── base.json
+      └── docker-compose.yml
+
+    In this example, the working directory should be ``~/Documents/containers/solarthing``.
+
     Assuming you have just configured a program to monitor a serial port, you will need to add a few lines to your ``docker-compose.yml``.
     Make sure you add the ``cap_add`` and ``devices`` sections so it looks like this:
 
-    .. code-block:: yaml
+    Please change ``/dev/ttyUSB0:/dev/ttyUSB0`` to reflect the path to the serial port.
 
-      version: '3.7'
+    .. code-block:: yaml
+      :emphasize-lines: 9, 10, 11, 12
 
       services:
-        solarthing-main:
+        main:
           image: 'ghcr.io/wildmountainfarms/solarthing:latest'
           container_name: solarthing-main
           restart: 'unless-stopped'
           command: run --base config/base.json
-      # BEGIN ADD THESE LINES
-      #    group_add: # this is only necessary if you are using a user other than root
-      #      - dialout
+          group_add: # this is only necessary if you are using a user other than root
+            - dialout
           cap_add:
             - SYS_RAWIO
           devices:
             - '/dev/ttyUSB0:/dev/ttyUSB0'
-      # END ADD THESE LINES
           volumes:
             - './main/config:/app/config:ro'
             - './main/logs:/app/logs'

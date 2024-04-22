@@ -27,12 +27,11 @@ If you are using Docker or Docker Compose, you must add the ``-v '/sys/class/the
 If you are not using Docker, additional configuration is not required.
 
 .. code-block:: yaml
-
-  version: '3.7'
+  :emphasize-lines: 7
 
   services:
-    solarthing-rover:
-      image: 'ghcr.io/wildmountainfarms/solarthing:$SOLARTHING_VERSION'
+    rover:
+      image: 'ghcr.io/wildmountainfarms/solarthing:latest'
       # ...
       volumes:
         # ...

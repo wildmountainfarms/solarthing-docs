@@ -1,5 +1,5 @@
-SolarThing Server
-==================
+SolarThing Server and Grafana
+================================
 
 SolarThing Server is a program to expose your CouchDB database as a GraphQL endpoint and as a web interface.
 

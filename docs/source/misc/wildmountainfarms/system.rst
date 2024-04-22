@@ -8,7 +8,7 @@ Devices
 
 * 1:FX 2:FX 3:MX 4:MX
 * Renogy Rover PG 40A
-* EPEver Tracer 20A
+* EPEver Tracer2210AN (20A)
 
 Inverters
 ------------
