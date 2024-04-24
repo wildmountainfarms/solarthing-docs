@@ -1,7 +1,7 @@
-Grafana and the GraphQL Datasource
-===================================
+Grafana and the Wild GraphQL Datasource
+========================================
 
-With SolarThing Server fully setup and a Grafana instance installed on your system, you are ready to configure Grafana with the GraphQL Datasource!
+With SolarThing Server fully setup and a Grafana instance installed on your system, you are ready to configure Grafana with the Wild GraphQL Datasource!
 
 
 Install Wild GraphQL Datasource to Grafana
@@ -34,7 +34,8 @@ Keep all the other defaults, then click "Save & Test". You should see a green bo
   That particular IP address is used inside of docker containers to refer to the "real" host machine. If you are not using Docker, ignore this.
 
   If you are running SolarThing server inside of docker, you can either expose the port 8080, or you make sure your Grafana container
-  and your SolarThing server container are on the same Docker network. Once you do that, you can refer to the GraphQL endpoint via
+  and your SolarThing server container are on the same Docker network (this is the default for docker containers defined in the same docker compose file).
+  Once you do that, you can refer to the GraphQL endpoint via
   ``http://solarthing-server:8080/graphql`` where ``solarthing-server`` is the name of your container.
 
 

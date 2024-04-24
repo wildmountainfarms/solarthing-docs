@@ -27,9 +27,10 @@ or use a particular directory for configuration. Let's change our directory to t
     In this example, the working directory should be ``~/Documents/containers/solarthing``.
 
     Assuming you have just configured a program to monitor a serial port, you will need to add a few lines to your ``docker-compose.yml``.
-    Make sure you add the ``cap_add`` and ``devices`` sections so it looks like this:
+    Make sure you add the ``cap_add`` and ``devices`` sections so it looks like the highlighted lines below.
 
-    Please change ``/dev/ttyUSB0:/dev/ttyUSB0`` to reflect the path to the serial port.
+    Please change ``/dev/ttyUSB0:/dev/ttyUSB0`` to reflect the path to the serial port if it is different.
+    For instance, if your serial port is ``/dev/ttyUSB1``, you should instead use ``/dev/ttyUSB1:/dev/ttyUSB1``
 
     .. code-block:: yaml
       :emphasize-lines: 9, 10, 11, 12

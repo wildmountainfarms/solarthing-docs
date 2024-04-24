@@ -111,7 +111,9 @@ Timeline
 2024
 ^^^^
 
-* Development started on Wild GraphQL Datasource for Grafana
+* Development started on Wild GraphQL Data Source for Grafana
+
+  * Officially released in April https://grafana.com/grafana/plugins/retrodaredevil-wildgraphql-datasource/
 
 Anecdotes
 -----------

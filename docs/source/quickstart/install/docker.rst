@@ -34,7 +34,6 @@ You may choose to put SolarThing config in a place such as ``~/Documents/contain
 It is recommend to put SolarThing configuration somewhere in your home directory so that your user has permission to edit the configuration without sudo.
 
 For the purpose of this tutorial, I will choose ``~/Documents/containers/solarthing``.
-Since we are choosing that location, it should also have a folder named config nested inside it.
 We will now create a ``docker-compose.yml`` file so that when we configure SolarThing in future steps we can easily run and test it.
 
 .. note::
@@ -53,6 +52,8 @@ Here is an example file structure:
   │   └── config/
   │       └── base.json
   └── docker-compose.yml
+
+Let's make the file structure!
 
 .. code-block:: shell
 

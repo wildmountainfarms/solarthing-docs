@@ -7,10 +7,6 @@ In SolarThing there is a whole package dedicated to defining GraphQL endpoints f
 The ``/graphql`` endpoint is used to make GraphQL requests. There are many different possible queries to choose from.
 The structure of many of the queries are designed in such a way to make them easily usable with `Wild GraphQL Data Source <https://github.com/wildmountainfarms/wild-graphql-datasource>`.
 
-.. note::
-
-  Documentation for setting up the GraphQL datasource is outdated. See :issue:`190` for more information.
-
 The cool thing about GraphQL, is that you can tell it to query something, then only ask for some of the result.
 By asking for only some of the result, it may not have to do all the calculations.
 In the case of SolarThing, we can ask it to query all the status packets in a time period,
