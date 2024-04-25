@@ -38,6 +38,13 @@ Keep all the other defaults, then click "Save & Test". You should see a green bo
   Once you do that, you can refer to the GraphQL endpoint via
   ``http://solarthing-server:8080/graphql`` where ``solarthing-server`` is the name of your container.
 
+Pre-made dashboards
+-----------------------
+
+If you want to get something up an running quickly without learning about the inner-workings of writing GraphQL queries,
+check out this: https://github.com/wildmountainfarms/solarthing-dashboards
+
+There, you can choose the dashboard that is right for you. Download the JSON file, then import it into Grafana.
 
 Simple Battery Voltage Graph
 -----------------------------
