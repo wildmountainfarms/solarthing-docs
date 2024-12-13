@@ -10,19 +10,19 @@ So you need to install Java to your system?
 Required Version
 ----------------
 
-SolarThing requires Java >= 11 and SolarThing Server requires Java >= 17. If you are able to install Java 17, you should do so, otherwise 11 is fine .
+SolarThing requires Java >= 17 and SolarThing Server requires Java >= 17. If you are able to install Java 17, you should do so, otherwise 11 is fine .
 
 
 Install on Systems with Apt
 ---------------------------
 
-The ``apt-get`` or ``apt`` command is used to install most software. To install Java 11, run this command:
+The ``apt-get`` or ``apt`` command is used to install most software. To install Java 17, run this command:
 
 
 .. code-block:: shell
 
     sudo apt-get update
-    sudo apt-get install -y openjdk-11-jdk-headless
+    sudo apt-get install -y openjdk-17-jdk-headless
 
 Raspberry Pi 1 and Raspberry Pi Zero
 -------------------------------------

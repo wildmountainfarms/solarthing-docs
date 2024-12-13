@@ -36,6 +36,16 @@ Open in IntelliJ
 
 File -> Open, then navigate to the place where you cloned ``solarthing``.
 
+Installing Java
+------------------
+
+You need Java 21 to build SolarThing. You may install it however you please. I recommend the following:
+
+.. code-block:: shell
+
+  # Install Eclipse Temurin 21
+  sdk install java 21-tem
+
 Further Setup for server and web module
 ------------------------------------------
 
