@@ -62,6 +62,10 @@ extlinks = {
 
 html_sourcelink_suffix = ""
 
+latex_elements = {
+    "maxlistdepth": 10
+}
+
 redirects = {
     "database-and-display": "about/database-and-display.html",
     "faq": "about/faq.html",
