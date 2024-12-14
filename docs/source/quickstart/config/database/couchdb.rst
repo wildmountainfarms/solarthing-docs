@@ -60,17 +60,15 @@ Let's understand how to update the ``"url"`` to correctly refer to your database
 
   * If SolarThing is running in Docker
 
-    * If CouchDB is installed in Docker and is in the same docker compose file as SolarThing
+    * If CouchDB is installed in Docker
 
+      * CouchDB must be in the same docker compose file as SolarThing
       * Set ``"url"`` to refer to the service name of the CouchDB container or its container name. For instance, ``http://couchdb:5984`` if ``couchdb`` is the name of the service or is the ``container_name``.
 
-    * CouchDB has its ``5984`` port exposed on the host machine
+    * CouchDB is not installed in Docker, set its URL to either of these
 
-      * Set ``"url"`` to refer to the host machine using either of the following:
-
-        * ``http://172.17.0.1:5984``  (recommended)
-        * ``http://<IP address of your device on the LAN>:5984`` (not recommended, prone to errors if your device's LAN IP address changes)
-
+      * ``http://172.17.0.1:5984``  (recommended)
+      * ``http://<IP address of your device on the LAN>:5984`` (not recommended, prone to errors if your device's LAN IP address changes)
 
   * If SolarThing is a native install
 
