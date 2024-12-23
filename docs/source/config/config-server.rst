@@ -5,6 +5,10 @@ The rover and tracer programs have the ability to host a small server that can b
 These servers are by default bound to ``localhost``, so only those on the device itself can access it.
 Enabling this feature can allow you to set parameters on your charge controller and read parameters, all while SolarThing is running normally.
 
+.. note::
+
+  The documentation here is not fully complete. Please ask any clarifying questions or create a new issue if there is not enough information here.
+
 Enabling
 -----------
 
@@ -73,17 +77,27 @@ If you have a server configured to run on port ``5051``, simply run this command
 
     nc localhost 5051
 
+.. note::
+
+  For Docker installs, first make sure you are running SolarThing v2025.1.1 or greater. Then you must execute this command instead, replacing ``service-name`` with the name of the service defined in ``docker-compose.yml``.
+  The service name is typically ``main``.
+
+  .. code-block:: shell
+
+    docker compose exec service-name nc localhost 5051
+
 Once you run that command, you should be able to start typing commands. You can type the battery voltage command, and you should get a response back within 5 seconds like so:
 
 .. code-block:: console
 
-    pi@raspberrypi:/opt/solarthing/program/custom_rover $ nc localhost 5051
+    pi@raspberrypi:~$ nc localhost 5051
     batteryVoltage
     24.5
 
 Rovers and Tracers support different fields to query.
+Each field is case sensitive, so make sure the casing is correct.
 
-Changing paramters of a rover
+Changing parameters of a rover
 ------------------------------
 
 If you have a rover, here is an example of some of the fields you can change and some values you might change them to:
