@@ -8,6 +8,12 @@ This shows you how to setup SolarThing server.
   It is recommended to configure SolarThing Server on the same device as the CouchDB database.
   Assuming a docker install, this page will recommend you append to the ``docker-compose.yml`` file you created for CouchDB's docker install.
 
+.. note::
+
+  Again, it is not recommended that you install SolarThing Server on a Raspberry Pi.
+  However, if you do decide to install it on a Raspberry Pi, you must do so using the Docker install method.
+  This is because SolarThing Server requires Java 21, and not even the Raspberry Pi 5 supports Java 21 (as of writing) through traditional methods of installing Java.
+
 Setting Up
 -----------
 
