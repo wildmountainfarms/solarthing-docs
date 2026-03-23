@@ -1,7 +1,7 @@
-Setup
-=======
+SolarThing Server Setup
+=======================
 
-This shows you how to setup SolarThing server.
+This shows you how to configure and set up SolarThing server.
 
 .. note::
 
