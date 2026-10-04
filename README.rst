@@ -49,6 +49,19 @@ After deploying, check the sidebar search with both mouse and keyboard and confi
 that results link to the expected documentation version. Hosted search and indexing
 must be verified on Read the Docs; a local build cannot exercise that backend.
 
+If the popup opens but every query returns no results, check **Settings > Advanced**
+for **Enable search indexing** (`Settings <https://app.readthedocs.org/dashboard/solarthing/edit/>`_).
+This is separate from enabling the search popup.
+Read the Docs can disable indexing for inactive projects; re-enabling it starts
+reindexing the project. If indexing is already enabled, rebuild the latest version
+and check project notifications for indexing failures.
+
+To distinguish an indexing problem from a frontend problem, try a known term at
+``https://solarthing.readthedocs.io/_/api/v3/search/?q=project%3Asolarthing%2Flatest%20rover``.
+A successful response with ``count: 0`` indicates that hosted search has no matching
+indexed content. Sphinx's independent search remains available at
+``https://solarthing.readthedocs.io/en/latest/search.html?q=rover``.
+
 Testing
 ----------
 
