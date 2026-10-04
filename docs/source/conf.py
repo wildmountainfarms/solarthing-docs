@@ -22,7 +22,6 @@ extensions = [
     #'sphinxcontrib.globalsubs',
     'sphinx_reredirects', # https://documatt.gitlab.io/sphinx-reredirects/install.html
     'sphinx_tabs.tabs', # https://pypi.org/project/sphinx-tabs/
-    'sphinx_search.extension', # https://pypi.org/project/readthedocs-sphinx-search/
 ]
 
 todo_include_todos=True
@@ -43,6 +42,9 @@ html_theme = 'furo'
 #html_theme_options = {
 #}
 html_theme_options = dict()
+
+html_static_path = ['_static']
+html_js_files = ['readthedocs-search.js']
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'

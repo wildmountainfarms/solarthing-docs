@@ -11,7 +11,7 @@ If you are unfamiliar with RST, this is a good reference: https://thomas-cokelae
 Building
 ----------
 
-To build this yourself, run these commands:
+To build this yourself, use Python 3.12 or newer (Read the Docs uses Python 3.14) and run these commands:
 
 .. code-block:: shell
 
@@ -35,6 +35,19 @@ Depending on what you want to build yourself from the Building section, you can 
 
 Stuff we might use in the future:
 * https://www.sphinx-doc.org/en/master/usage/extensions/linkcode.html
+
+Read the Docs Search
+--------------------
+
+Hosted search uses `Read the Docs Addons <https://docs.readthedocs.com/platform/stable/addons.html>`_,
+without a Python search extension. Enable **Search as you type** in the project's
+Read the Docs dashboard under **Settings > Addons**. Once the addon is ready,
+clicking or focusing Furo's sidebar search opens Read the Docs search.
+Local builds, or pages where the addon is unavailable or disabled, retain Sphinx search.
+
+After deploying, check the sidebar search with both mouse and keyboard and confirm
+that results link to the expected documentation version. Hosted search and indexing
+must be verified on Read the Docs; a local build cannot exercise that backend.
 
 Testing
 ----------
